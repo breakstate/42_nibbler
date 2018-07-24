@@ -14,13 +14,13 @@ NAME = nibbler
 
 CC = clang++
 
-FLAGS =	#Add Flags Last			
+FLAGS =	
 
-HEADERS = -I hdrs/
+HEADERS = -I includes/
 
-SRC_DIR = srcs/
+SRC_DIR = sources/
 
-OBJ_DIR_NAME =	objs
+OBJ_DIR_NAME =	objects
 OBJ_DIR = ./$(OBJ_DIR_NAME)/
 
 FILENAMES = main Game Snake ObjectManager
@@ -31,7 +31,7 @@ COMPILED_PATHS :=	$(addprefix $(OBJ_DIR),$(COMPILED_PATHS))
 all: $(NAME)
 
 $(NAME): $(COMPILED_PATHS)
-	$(CC) -o $(NAME) $(FLAGS) $(HEADERS) $(COMPILED_PATHS)
+	$(CC) -o $(NAME) $(FLAGS) $(HEADERS) -L libraries/dependencies/lib -l SDL2 $(COMPILED_PATHS)
 
 $(COMPILED_PATHS): $(OBJ_DIR)%.o: $(SRC_DIR)%.cpp
 	@/bin/mkdir -p $(OBJ_DIR)
