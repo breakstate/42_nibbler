@@ -14,6 +14,7 @@ Game( void );
 //Game & operator=( Game const & srcObj );
 
 void	gameloop( void );
+eDir	testAI( int safe );
 
 protected:
 

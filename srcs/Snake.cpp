@@ -52,11 +52,13 @@ int			Snake::getLength( void ){
 }
 
 int			Snake::getHeadX( void ){
-	return (this->_headX);
+	return (this->body[0].x);
+	//return (this->_headX);
 }
 
 int			Snake::getHeadY( void ){
-	return (this->_headY);
+	return (this->body[0].y);
+	//return (this->_headY);
 }
 
 eDir		Snake::getDir( void ){
