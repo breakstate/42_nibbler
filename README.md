@@ -72,3 +72,5 @@ bonus by extending the game rules. These are some examples:
 
 • Multiplayer through network. Same as above. The project could hardly be more
   badass if you acheive that.
+  
+  #Nibblerino diddle-ee dee
