@@ -16,11 +16,11 @@ CC = clang++
 
 FLAGS =	#Add Flags Last			
 
-HEADERS = -I hdr/
+HEADERS = -I hdrs/
 
 SRC_DIR = srcs/
 
-OBJ_DIR_NAME =	obj
+OBJ_DIR_NAME =	objs
 OBJ_DIR = ./$(OBJ_DIR_NAME)/
 
 FILENAMES = main Game Snake ObjectManager
