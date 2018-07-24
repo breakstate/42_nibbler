@@ -5,7 +5,8 @@ enum eDir {
 	LEFT,
 	UP,
 	RIGHT,
-	DOWN
+	DOWN,
+	OTHER
 };
 
 #endif

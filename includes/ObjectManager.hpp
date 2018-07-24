@@ -20,10 +20,15 @@ int		collisionManager( void );
 void	generateFood( void );
 void	moveSnake( void );
 void	setSnakeDir( eDir direction );
+eDir	getSnakeDir( void );
+void	draw( void );
 
 protected:
 
 private:
+
+void	_drawSnake( void );
+void	_drawFood( void );
 
 Snake	*_snake;
 int		_foodX;
