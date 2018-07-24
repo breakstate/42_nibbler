@@ -1,1 +1,1 @@
-clang++ main.cpp ./src/Game.cpp ./src/Snake.cpp -std=c++11
+clang++ main.cpp ./src/Game.cpp ./src/Snake.cpp ./src/ObjectManager.cpp -std=c++11

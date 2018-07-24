@@ -3,7 +3,6 @@
 
 Game::Game( void){
 	std::cout << "test" << std::endl;
-	this->_snake = new Snake( 10, 10, LEFT );
 }
 
 Game::~Game( void ){
@@ -15,10 +14,10 @@ void	Game::gameloop( void ){
 	unsigned int microseconds = 1000000;
 	int quit = 0;
 	while (!(quit)){
-		this->_snake->move();
-		this->_snake->debugPrint();
+		this->_OM.moveSnake();
+		//this->_snake->debugPrint();
 		if (tick == 3){
-			this->_snake->setDir( UP );
+			this->_OM.setSnakeDir( UP );
 		}
 		tick++;
 		usleep(microseconds);

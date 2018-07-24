@@ -2,6 +2,7 @@
 # define GAME_H
 
 # include "Snake.hpp"
+# include "ObjectManager.hpp"
 
 class Game {
 
@@ -18,12 +19,13 @@ protected:
 
 private:
 
+ObjectManager _OM;
+//LibraryManager _LM;
 // **member functions
-// gameloop
-// draw (?)
+
 
 // **attributes
-Snake *_snake;
+//Snake *_snake; // moved to object manager
 // Snake class instance
 // graphics lib controller (middle man) class instance
 
