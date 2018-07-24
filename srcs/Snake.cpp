@@ -1,4 +1,4 @@
-#include "../hdr/Snake.hpp"
+#include "../headers/Snake.hpp"
 
 Snake::Snake( void ){
 }
