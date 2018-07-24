@@ -23,7 +23,7 @@ SRC_DIR = srcs/
 OBJ_DIR_NAME =	obj
 OBJ_DIR = ./$(OBJ_DIR_NAME)/
 
-FILENAMES = main Game Snake
+FILENAMES = main Game Snake ObjectManager
 
 COMPILED_PATHS :=	$(addsuffix .o,$(FILENAMES))
 COMPILED_PATHS :=	$(addprefix $(OBJ_DIR),$(COMPILED_PATHS))
