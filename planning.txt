@@ -1,0 +1,25 @@
+Gameloop
+-movement updates
+-collision detection
+-draw
+-generate food
+
+snake is vector/list of structs.
+-each has grid co-ords and index.
+-each contains co-ords of node ahead
+
+attributes needed for head of snake
+-contains direction attribute that controls updated head direction:
+	eg 0=left, 1=up, 2=right, 3=down. Arrow keys update direction attribute.
+-snake head can be class that contains body vector/list
+
+snake movement logic:
+-head updates one block depending on value of direction attribute.
+-each consecutive segment follows on by updating their current XY, to the XY of the segment ahead.
+
+classes:
+-single core class? :thinking:
+-dll switching controller class
+
+"how to set a framerate"
+"make a snake game in four minutes"
