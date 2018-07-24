@@ -1,4 +1,4 @@
-#include "../headers/ObjectManager.hpp"
+#include "../hdrs/ObjectManager.hpp"
 
 #define SCRN_WIDTH 20 // debug // test
 #define SCRN_HEIGHT 15 // debug // test

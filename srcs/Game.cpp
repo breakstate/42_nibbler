@@ -1,4 +1,4 @@
-#include "../headers/Game.hpp"
+#include "../hdrs/Game.hpp"
 #include <unistd.h>
 
 Game::Game( void){
