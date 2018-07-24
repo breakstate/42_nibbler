@@ -13,36 +13,36 @@ Snake::Snake( int startX, int startY, eDir startDir ){
 	temp->head = 1;
 	//temp->index = 0; // not sure if needed
 	this->_direction = startDir;
-	this->_body.insert(this->_body.begin(), *temp);
+	this->body.insert(this->body.begin(), *temp);
 	delete temp;
-	this->_grow(); // debug // test
+	this->grow(); // debug // test
 }
 
 void		Snake::move( void ){
 	switch(this->_direction){
 	case LEFT:
 		this->_headX -= 1;
-		this->_body[0].x -=1;
+		this->body[0].x -=1;
 		break;
 	case UP:
 		this->_headY -= 1;
-		this->_body[0].y -=1;
+		this->body[0].y -=1;
 		break;
 	case RIGHT:
 		this->_headX += 1;
-		this->_body[0].x +=1;
+		this->body[0].x +=1;
 		break;
 	case DOWN:
 		this->_headY += 1;
-		this->_body[0].y +=1;
+		this->body[0].y +=1;
 		break;
 	};
-	for (int i = 0; i < this->_body.size(); i++){
-		if (!(this->_body[i].head)){
-			this->_body[i].x = this->_body[i].xAhead;
-			this->_body[i].y = this->_body[i].yAhead;
-			this->_body[i].xAhead = this->_body[i-1].x;
-			this->_body[i].yAhead = this->_body[i-1].y;
+	for (int i = 0; i < this->body.size(); i++){
+		if (!(this->body[i].head)){
+			this->body[i].x = this->body[i].xAhead;
+			this->body[i].y = this->body[i].yAhead;
+			this->body[i].xAhead = this->body[i-1].x;
+			this->body[i].yAhead = this->body[i-1].y;
 		}
 	}
 }
@@ -67,19 +67,20 @@ void		Snake::setDir( eDir direction ){
 	this->_direction = direction;
 }
 
-void		Snake::_checkCollision( void ){
+int			Snake::checkCollision( void ){
 	// gameover on collision with self or walls
+	return (0);
 }
 
-void		Snake::_grow( void ){
+void		Snake::grow( void ){
 	segment *temp = new segment;
-	temp->x = this->_body.end()->x + 1;
-	temp->y = this->_body.end()->y + 1;
-	temp->xAhead = this->_body.end()->x;
-	temp->yAhead = this->_body.end()->y;
+	temp->x = this->body.end()->x + 1;
+	temp->y = this->body.end()->y + 1;
+	temp->xAhead = this->body.end()->x;
+	temp->yAhead = this->body.end()->y;
 	temp->head = 0;
 	//temp->index = 0; // not sure if needed
-	this->_body.push_back(*temp);
+	this->body.push_back(*temp);
 	delete temp;
 }
 
@@ -89,8 +90,8 @@ void		Snake::_shrink( void ){
 
 void		Snake::debugPrint( void ){
 	std::cout << "debug print:" << std::endl;
-	for (int i = 0; i < this->_body.size(); i++){
-		std::cout << "x: " + std::to_string(this->_body[i].x) << "	y: " + std::to_string(this->_body[i].y) << std::endl;
+	for (int i = 0; i < this->body.size(); i++){
+		std::cout << "x: " + std::to_string(this->body[i].x) << "	y: " + std::to_string(this->body[i].y) << std::endl;
 	}
 	std::cout << std::endl;
 }

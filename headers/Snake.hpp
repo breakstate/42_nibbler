@@ -25,19 +25,20 @@ int			getHeadY( void );
 eDir		getDir( void );
 void		setDir( eDir direction );
 void		debugPrint( void );
+int			checkCollision( void );
+void		grow( void );
+
+std::vector<segment>	body;
 
 protected:
 
 private:
 
-void		_checkCollision( void );
-void		_grow( void );
 void		_shrink( void );
 
 int						_headX;
 int						_headY;
 int						_length;
-std::vector<segment>	_body;
 eDir					_direction;
 
 };
