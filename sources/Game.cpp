@@ -37,11 +37,19 @@ eDir	Game::testAI( int safe ){
 	std::cout << dir << std::endl;
 	switch (dir){
 		case(0):
-		return (LEFT);
+		if (this->_OM.getSnakeDir() != RIGHT)
+			return (LEFT);
+		break;
 		case(1):
-		return (UP);
+		if (this->_OM.getSnakeDir() != DOWN)
+			return (UP);
 		case(2):
-		return (RIGHT);
+		if (this->_OM.getSnakeDir() != LEFT)
+			return (RIGHT);
+		break;
+		if (this->_OM.getSnakeDir() != UP)
+			return (DOWN);
+		break;
 	};
-	return (DOWN);
+	return (OTHER);
 }
