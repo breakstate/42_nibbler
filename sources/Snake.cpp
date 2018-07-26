@@ -34,6 +34,7 @@ void		Snake::move( void ){
 		break;
 	case OTHER:
 		std::cout << "other" << std::endl;
+		this->move();
 		break;
 	};
 	for (int i = 0; i < this->_body.size(); i++){

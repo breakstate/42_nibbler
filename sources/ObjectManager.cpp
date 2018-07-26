@@ -28,8 +28,8 @@ int		ObjectManager::collisionManager( void ){
 		this->_snake->grow();
 	}
 	if (this->_snake->checkBodyCollision( x, y )){
-			//std::cout << "self collision" << std::endl;
-			return (1);
+		//std::cout << "self collision" << std::endl;
+		return (1);
 	}
 	return (0);
 }
