@@ -6,7 +6,7 @@
 #    By: qmanamel <qmanamel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/15 11:41:20 by qmanamel          #+#    #+#              #
-#    Updated: 2018/07/11 08:32:14 by qmanamel         ###   ########.fr        #
+#    Updated: 2018/07/25 13:53:20 by qmanamel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ COMPILED_PATHS :=	$(addprefix $(OBJ_DIR),$(COMPILED_PATHS))
 all: $(NAME)
 
 $(NAME): $(COMPILED_PATHS)
-	$(CC) -o $(NAME) $(FLAGS) $(HEADERS) -L libraries/dependencies/lib -l SDL2 $(COMPILED_PATHS)
+	$(CC) -o $(NAME) $(FLAGS) $(HEADERS) $(COMPILED_PATHS)
 
 $(COMPILED_PATHS): $(OBJ_DIR)%.o: $(SRC_DIR)%.cpp
 	@/bin/mkdir -p $(OBJ_DIR)

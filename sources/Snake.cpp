@@ -36,6 +36,8 @@ void		Snake::move( void ){
 		this->_headY += 1;
 		this->body[0].y +=1;
 		break;
+	case OTHER:
+		break;
 	};
 	for (int i = 0; i < this->body.size(); i++){
 		if (!(this->body[i].head)){

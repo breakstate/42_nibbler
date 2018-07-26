@@ -3,10 +3,11 @@
 #include <time.h> //
 #include <stdlib.h>
 #include <unistd.h>
+#include <dlfcn.h>
 
-
-Game::Game( void){
+Game::Game( void ) {
 	std::cout << "test" << std::endl;
+	this->_handler = dlopen("libraries/SDL2/SDL2.so", RTLD_NOW);
 }
 
 Game::~Game( void ){

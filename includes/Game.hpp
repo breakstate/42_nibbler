@@ -3,6 +3,8 @@
 
 # include "Snake.hpp"
 # include "ObjectManager.hpp"
+# include "../libraries/SDL2/includes/SDL2.hpp"
+# include "../libraries/LibraryManager.hpp"
 
 class Game {
 
@@ -20,8 +22,10 @@ protected:
 
 private:
 
-ObjectManager _OM;
-//LibraryManager _LM;
+ObjectManager   _OM;
+char            *_libs[3];
+void            *_handler;
+//LibraryManager  *_LM = new SDL(640, 640);
 // **member functions
 
 
