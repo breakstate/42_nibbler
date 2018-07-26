@@ -11,7 +11,6 @@ Snake::Snake( int startX, int startY, eDir startDir ){
 	temp->x = startX;
 	temp->y = startY;
 	temp->head = 1;
-	//temp->index = 0; // not sure if needed
 	this->_direction = startDir;
 	this->_body.insert(this->_body.begin(), *temp);
 	delete temp;
