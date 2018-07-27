@@ -18,26 +18,26 @@ Snake( void );
 
 Snake( int startX, int startY, eDir startDir );
 
-void		move( void );
-int			getLength( void );
-int			getHeadX( void );
-int			getHeadY( void );
-eDir		getDir( void );
-void		setDir( eDir direction );
-void		debugPrint( void );
-int			checkCollision( void );
-void		grow( void );
+void		            move( void );
+int			            getLength( void );
+int			            getHeadX( void );
+int			            getHeadY( void );
+eDir		            getDir( void );
+void		            setDir( eDir direction );
+int			            checkHeadCollision( int x, int y );
+int			            checkBodyCollision( int x, int y );
+void		            grow( void );
+void		            chop( int index );
+std::vector<segment>	getBody( void );
 
-std::vector<segment>	body;
+void		debugPrint( void );
+
 
 protected:
 
 private:
 
-void		_shrink( void );
-
-int						_headX;
-int						_headY;
+std::vector<segment>	_body;
 int						_length;
 eDir					_direction;
 

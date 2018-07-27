@@ -23,22 +23,25 @@ int		ObjectManager::collisionManager( void ){
 		//std::cout << "y collision" << std::endl;
 		return (1);
 	}
-	if (x == _foodX && y == _foodY){
+	if (this->_snake->checkHeadCollision( _foodX, _foodY )){
 		//std::cout << "food collision" << std::endl;
 		this->_snake->grow();
 	}
-	for (int i = 1; i < this->_snake->body.size(); i++){
-		if (x == this->_snake->body[i].x && y == this->_snake->body[i].y ){
-			//std::cout << "self collision" << std::endl;
-			return (1);
-		}
+	if (this->_snake->checkBodyCollision( x, y )){
+		//std::cout << "self collision" << std::endl;
+		return (1);
 	}
 	return (0);
 }
 
 void	ObjectManager::generateFood( void ){
-	this->_foodX = (rand() % (SCRN_WIDTH + 1)) - 2;
-	this->_foodY = (rand() % (SCRN_HEIGHT + 1)) - 2;
+	while (this->_snake->checkHeadCollision( _foodX, _foodY )){
+	//this->_foodX = (rand() % (SCRN_WIDTH + 1)) - 2; // actual
+	//this->_foodY = (rand() % (SCRN_HEIGHT + 1)) - 2; // actual
+	}
+
+	this->_foodX = 7; // test // debug
+	this->_foodY = 10; // test // debug
 
 	//debug print
 	std::cout << "Food:\nx: " << this->_foodX << "	y: " << this->_foodY << std::endl;
@@ -58,7 +61,7 @@ eDir	ObjectManager::getSnakeDir( void ){
 }
 
 std::vector<segment>	ObjectManager::getSnakeBody( void ) {
-	return (this->_snake->body);
+	return (this->_snake->getBody());
 }
 
 

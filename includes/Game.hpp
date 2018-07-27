@@ -29,11 +29,12 @@ void            *_handler;
 createLib_t     *createLib;
 destroyLib_t    *destroyLib;
 LibraryManager  *_LM;
+
 // **member functions
 
 
 // **attributes
-//Snake *_snake; // moved to object manager
+// Snake *_snake; // moved to object manager
 // Snake class instance
 // graphics lib controller (middle man) class instance
 
