@@ -14,6 +14,7 @@ ObjectManager::~ObjectManager( void ){
 int		ObjectManager::collisionManager( void ){
 	int	x = this->_snake->getHeadX();
 	int	y = this->_snake->getHeadY();
+	int	index;
 	//std::cout << "Collision debug:\n" << "x= " << x << "; y= " << y << std::endl;
 	if ((x <= 0) || (x >= SCRN_WIDTH)){
 		//std::cout << "x collision" << std::endl;
@@ -27,9 +28,9 @@ int		ObjectManager::collisionManager( void ){
 		//std::cout << "food collision" << std::endl;
 		this->_snake->grow();
 	}
-	if (this->_snake->checkBodyCollision( x, y )){
+	if ((index = this->_snake->checkBodyCollision( x, y ))){
 		//std::cout << "self collision" << std::endl;
-		return (1);
+		this->_snake->chop( index );
 	}
 	return (0);
 }

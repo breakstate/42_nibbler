@@ -15,6 +15,10 @@ Snake::Snake( int startX, int startY, eDir startDir ){
 	this->_body.insert(this->_body.begin(), *temp);
 	delete temp;
 	this->grow(); // debug // test
+	this->grow(); // debug // test
+	this->grow(); // debug // test
+	this->grow(); // debug // test
+	this->grow(); // debug // test
 }
 
 void		Snake::move( void ){
@@ -78,19 +82,22 @@ int			Snake::checkHeadCollision( int x, int y ){
 
 int			Snake::checkBodyCollision( int x, int y ){
 	// check collision with own body
+	// return index. Thanks George
 	for (int i = 1; i < this->_body.size(); i++){
-		if (this->_body[i].x == x && this->_body[i].y == y)
-			return (1);
+		if (this->_body[i].x == x && this->_body[i].y == y){
+			std::cout << "chop index: " << i << std::endl;
+			return (i);
+		}
 	}
 	return (0);
 }
 
 void		Snake::grow( void ){
 	segment *temp = new segment;
-	temp->x = this->_body.end()->x;// + 1;
-	temp->y = this->_body.end()->y;// + 1;
-	temp->xAhead = this->_body.end()->x;
-	temp->yAhead = this->_body.end()->y;
+	temp->x = this->_body.back().x;// + 1;
+	temp->y = this->_body.back().y;// + 1;
+	temp->xAhead = this->_body.back().x;
+	temp->yAhead = this->_body.back().y;
 	temp->head = 0;
 	//temp->index = 0; // not sure if needed
 	this->_body.push_back(*temp);
