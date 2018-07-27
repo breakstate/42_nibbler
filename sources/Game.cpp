@@ -36,7 +36,7 @@ void	Game::gameloop( void ){
 		if (this->_OM.collisionManager())
 			std::cout << "You'd be so dead rn" << std::endl;
 		eDir direction = static_cast<eDir>(this->_LM->keyHook());
-		std::cout << "Direction is: " << direction << std::endl; 
+		std::cout << "Direction is: " << direction << std::endl;
 		this->_OM.setSnakeDir( direction );
 		this->_OM.moveSnake();
 		this->_LM->print(this->_OM.getSnakeBody());

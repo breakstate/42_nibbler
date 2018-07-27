@@ -5,7 +5,7 @@
 
 ObjectManager::ObjectManager( void ){
 	std::cout << "created snake" << std::endl;
-	this->_snake = new Snake( 10, 10, LEFT );
+	this->_snake = new Snake( 10, 10, RIGHT );
 }
 
 ObjectManager::~ObjectManager( void ){
@@ -53,7 +53,9 @@ void	ObjectManager::moveSnake( void ){
 }
 
 void	ObjectManager::setSnakeDir( eDir direction ){
-	this->_snake->setDir( direction );
+	if (direction != OTHER) {
+		this->_snake->setDir( direction );
+	}
 }
 
 eDir	ObjectManager::getSnakeDir( void ){
