@@ -1,4 +1,5 @@
 #include "../includes/Game.hpp"
+#include "../libraries/SDL2/includes/SDL2.hpp"
 #include <unistd.h> // for usleep
 #include <time.h> //
 #include <stdlib.h>
@@ -6,8 +7,19 @@
 #include <dlfcn.h>
 
 Game::Game( void ) {
-	std::cout << "test" << std::endl;
 	this->_handler = dlopen("libraries/SDL2/SDL2.so", RTLD_NOW);
+	if (!this->_handler) {
+		std::cout << "DLOPEN Error" << std::endl;
+		std::cout << dlerror() << std::endl;
+	}
+	createLib = (createLib_t*) dlsym(this->_handler, "create");
+	destroyLib = (destroyLib_t*) dlsym(this->_handler, "destroy");
+	if (dlerror()) {
+		std::cout << "ERROR" << std::endl;
+		std::cout << dlerror() << std::endl;
+		std::cout << "ERROR" << std::endl;
+	}
+	this->setLib(createLib(640, 640));
 }
 
 Game::~Game( void ){
@@ -23,13 +35,17 @@ void	Game::gameloop( void ){
 	while (!(quit)){
 		if (this->_OM.collisionManager())
 			std::cout << "You'd be so dead rn" << std::endl;
+		eDir direction = static_cast<eDir>(this->_LM->keyHook());
+		std::cout << "Direction is: " << direction << std::endl; 
+		this->_OM.setSnakeDir( direction );
 		this->_OM.moveSnake();
-		if (tick == 5){
-			this->_OM.setSnakeDir( this->testAI(0) ); // debug // test
-			tick = 0;
-		}
-		tick++;
-		usleep(microseconds);
+		this->_LM->print(this->_OM.getSnakeBody());
+		// if (tick == 5){
+		// 	this->_OM.setSnakeDir( this->testAI(0) ); // debug // test
+		// 	tick = 0;
+		// }
+		// tick++;
+		//usleep(microseconds);
 	}
 }
 
@@ -53,4 +69,12 @@ eDir	Game::testAI( int safe ){
 		break;
 	};
 	return (OTHER);
+}
+
+void    Game::setLib( LibraryManager *newLib ) {
+	this->_LM = newLib;
+}
+
+void    Game::deleteLib( void ) {
+	destroyLib(this->_LM);
 }

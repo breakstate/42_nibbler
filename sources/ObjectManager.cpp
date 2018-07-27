@@ -1,7 +1,7 @@
 #include "../includes/ObjectManager.hpp"
 
-#define SCRN_WIDTH 20 // debug // test
-#define SCRN_HEIGHT 15 // debug // test
+#define SCRN_WIDTH 640 // debug // test
+#define SCRN_HEIGHT 640 // debug // test
 
 ObjectManager::ObjectManager( void ){
 	std::cout << "created snake" << std::endl;
@@ -55,6 +55,10 @@ void	ObjectManager::setSnakeDir( eDir direction ){
 
 eDir	ObjectManager::getSnakeDir( void ){
 	return (this->_snake->getDir());
+}
+
+std::vector<segment>	ObjectManager::getSnakeBody( void ) {
+	return (this->_snake->body);
 }
 
 

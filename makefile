@@ -28,9 +28,12 @@ FILENAMES = main Game Snake ObjectManager
 COMPILED_PATHS :=	$(addsuffix .o,$(FILENAMES))
 COMPILED_PATHS :=	$(addprefix $(OBJ_DIR),$(COMPILED_PATHS))
 
+SDL_MAKE = make -C libraries/SDL2
+
 all: $(NAME)
 
 $(NAME): $(COMPILED_PATHS)
+	$(SDL_MAKE)
 	$(CC) -o $(NAME) $(FLAGS) $(HEADERS) $(COMPILED_PATHS)
 
 $(COMPILED_PATHS): $(OBJ_DIR)%.o: $(SRC_DIR)%.cpp

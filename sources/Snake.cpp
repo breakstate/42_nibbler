@@ -21,20 +21,20 @@ Snake::Snake( int startX, int startY, eDir startDir ){
 void		Snake::move( void ){
 	switch(this->_direction){
 	case LEFT:
-		this->_headX -= 1;
-		this->body[0].x -=1;
+		this->_headX -= 10;
+		this->body[0].x -=10;
 		break;
 	case UP:
-		this->_headY -= 1;
-		this->body[0].y -=1;
+		this->_headY -= 10;
+		this->body[0].y -=10;
 		break;
 	case RIGHT:
-		this->_headX += 1;
-		this->body[0].x +=1;
+		this->_headX += 10;
+		this->body[0].x +=10;
 		break;
 	case DOWN:
-		this->_headY += 1;
-		this->body[0].y +=1;
+		this->_headY += 10;
+		this->body[0].y +=10;
 		break;
 	case OTHER:
 		break;

@@ -21,6 +21,7 @@ void	generateFood( void );
 void	moveSnake( void );
 void	setSnakeDir( eDir direction );
 eDir	getSnakeDir( void );
+std::vector<segment>	getSnakeBody( void );
 void	draw( void );
 
 protected:

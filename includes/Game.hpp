@@ -3,7 +3,6 @@
 
 # include "Snake.hpp"
 # include "ObjectManager.hpp"
-# include "../libraries/SDL2/includes/SDL2.hpp"
 # include "../libraries/LibraryManager.hpp"
 
 class Game {
@@ -17,6 +16,8 @@ Game( void );
 
 void	gameloop( void );
 eDir	testAI( int safe );
+void    setLib( LibraryManager *newLib );
+void    deleteLib( void );
 
 protected:
 
@@ -25,7 +26,9 @@ private:
 ObjectManager   _OM;
 char            *_libs[3];
 void            *_handler;
-//LibraryManager  *_LM = new SDL(640, 640);
+createLib_t     *createLib;
+destroyLib_t    *destroyLib;
+LibraryManager  *_LM;
 // **member functions
 
 
