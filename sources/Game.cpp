@@ -45,7 +45,7 @@ void	Game::gameloop( void ){
 		// 	tick = 0;
 		// }
 		// tick++;
-		//usleep(microseconds);
+		usleep(microseconds);
 
 	}
 }
