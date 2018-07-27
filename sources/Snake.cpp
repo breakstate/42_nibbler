@@ -22,18 +22,19 @@ Snake::Snake( int startX, int startY, eDir startDir ){
 }
 
 void		Snake::move( void ){
+	this->debugPrint(); // debug
 	switch(this->_direction){
 	case LEFT:
-		this->_body[0].x -=1;
+		this->_body[0].x -=10;
 		break;
 	case UP:
-		this->_body[0].y -=1;
+		this->_body[0].y -=10;
 		break;
 	case RIGHT:
-		this->_body[0].x +=1;
+		this->_body[0].x +=10;
 		break;
 	case DOWN:
-		this->_body[0].y +=1;
+		this->_body[0].y +=10;
 		break;
 	case OTHER:
 		std::cout << "other" << std::endl;

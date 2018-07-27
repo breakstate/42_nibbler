@@ -27,6 +27,8 @@ class SDL : public LibraryManager {
         int             _blockWidth;
         int             _WindowHeight;
         int             _WindowWidth;
+        void    putpixel(unsigned int x, unsigned int y, unsigned int colour); // test // REMOVE
+
 };
 
 #ifdef __cplusplus

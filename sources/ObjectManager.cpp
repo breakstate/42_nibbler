@@ -30,7 +30,7 @@ int		ObjectManager::collisionManager( void ){
 	}
 	if ((index = this->_snake->checkBodyCollision( x, y ))){
 		//std::cout << "self collision" << std::endl;
-		this->_snake->chop( index );
+		//this->_snake->chop( index );
 	}
 	return (0);
 }

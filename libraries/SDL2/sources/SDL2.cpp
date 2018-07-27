@@ -45,19 +45,20 @@ void        SDL::init() {
 }
 
 int         SDL::keyHook()   {
-    SDL_WaitEvent(&_event);
     while (SDL_PollEvent(&_event))
-    if (_event.type == SDL_QUIT) {
-        exit(0);
-    }
-    switch (_event.type) {
-       case SDL_KEYDOWN:
-           switch (_event.key.keysym.sym) {
-               case SDLK_UP: return UP;
-               case SDLK_DOWN: return DOWN;
-               case SDLK_LEFT: return LEFT;
-               case SDLK_RIGHT: return RIGHT;
-           }
+    {
+        if (_event.type == SDL_QUIT) {
+            exit(0);
+        }
+        switch (_event.type) {
+           case SDL_KEYDOWN:
+               switch (_event.key.keysym.sym) {
+                   case SDLK_UP: return UP;
+                   case SDLK_DOWN: return DOWN;
+                   case SDLK_LEFT: return LEFT;
+                   case SDLK_RIGHT: return RIGHT;
+               }
+        }
     }
     return (OTHER);
 }
@@ -71,8 +72,9 @@ void    SDL::print(std::vector<segment>	body) {
     this->_rect.h = this->_blockHeight;
     std::cout << "X: " << ((this->_WindowWidth - this->_rect.w) / 2) << std::endl;
     std::cout << "Y: " << ((this->_WindowHeight - this->_rect.h) / 2) << std::endl;
-    this->_rect.x = body[0].x;
-    this->_rect.y = body[0].y;
+    for (int i = 0; i < body.size(); i++){ // TESTNG
+        this->putpixel(body[i].x, body[i].y, 0x0000ff);
+    }
     this->_boxcolor = SDL_MapRGB(this->_screenSurface->format, 0, 0, 255);
     this->_backgroundcolor = SDL_MapRGB(this->_screenSurface->format, 0, 0, 0);
     SDL_FillRect(this->_screenSurface, NULL, this->_backgroundcolor);
@@ -80,6 +82,18 @@ void    SDL::print(std::vector<segment>	body) {
     SDL_FillRect(this->_screenSurface, NULL, this->_backgroundcolor);
     SDL_FillRect(this->_screenSurface, &this->_rect, this->_boxcolor);
     SDL_UpdateWindowSurface(this->_Window);
+}
+
+void    SDL::putpixel(unsigned int x, unsigned int y, unsigned int colour) {
+    unsigned int *pxlptr;
+    int         lineoffset;
+    /*if ((int)y >= this->height || (int)y < 0)
+        return;
+    if ((int)x >= this->width || (int)x < 0)
+        return;*/
+    lineoffset = (y * 640) + x;
+    pxlptr = (unsigned int *)this->_screenSurface->pixels;
+    pxlptr[lineoffset] = colour;
 }
 
 SDL         *create(int height, int width) {
