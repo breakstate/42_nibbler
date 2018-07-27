@@ -45,19 +45,19 @@ void        SDL::init() {
 }
 
 int         SDL::keyHook()   {
-    SDL_WaitEvent(&_event);
-    while (SDL_PollEvent(&_event))
-    if (_event.type == SDL_QUIT) {
-        exit(0);
-    }
-    switch (_event.type) {
-       case SDL_KEYDOWN:
-           switch (_event.key.keysym.sym) {
-               case SDLK_UP: return UP;
-               case SDLK_DOWN: return DOWN;
-               case SDLK_LEFT: return LEFT;
-               case SDLK_RIGHT: return RIGHT;
-           }
+    while (SDL_PollEvent(&_event)) {
+        if (_event.type == SDL_QUIT) {
+            exit(0);
+        }
+        switch (_event.type) {
+           case SDL_KEYDOWN:
+               switch (_event.key.keysym.sym) {
+                   case SDLK_UP: return UP;
+                   case SDLK_DOWN: return DOWN;
+                   case SDLK_LEFT: return LEFT;
+                   case SDLK_RIGHT: return RIGHT;
+               }
+        }
     }
     return (OTHER);
 }
