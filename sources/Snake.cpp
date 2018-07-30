@@ -14,14 +14,11 @@ Snake::Snake( int startX, int startY, eDir startDir ){
 	this->_direction = startDir;
 	this->_body.insert(this->_body.begin(), *temp);
 	delete temp;
-	this->grow(); // debug // test
-	this->grow(); // debug // test
-	this->grow(); // debug // test
-	this->grow(); // debug // test
-	this->grow(); // debug // test
+	this->grow();
 }
 
 void		Snake::move( void ){
+	this->debugPrint(); // debug
 	switch(this->_direction){
 	case LEFT:
 		this->_body[0].x -=1;
@@ -74,7 +71,7 @@ void		Snake::setDir( eDir direction ){
 
 int			Snake::checkHeadCollision( int x, int y ){
 	// check collision with own head
-	if (this->getHeadX() == x && this->getHeadY() == y)
+	if ((this->getHeadX() == x) && (this->getHeadY() == y))
 		return (1);
 	return (0);
 }
@@ -93,8 +90,8 @@ int			Snake::checkBodyCollision( int x, int y ){
 
 void		Snake::grow( void ){
 	segment *temp = new segment;
-	temp->x = this->_body.back().x;// + 1;
-	temp->y = this->_body.back().y;// + 1;
+	temp->x = this->_body.back().x;
+	temp->y = this->_body.back().y;
 	temp->xAhead = this->_body.back().x;
 	temp->yAhead = this->_body.back().y;
 	temp->head = 0;

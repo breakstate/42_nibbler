@@ -14,13 +14,14 @@ class SDL : public LibraryManager {
 
         void        init();
         int         keyHook();
-        void        print(std::vector<segment>	body);
+        void        print(std::vector<segment>	body, int foodX, int foodY);
+        void        print_rect(int x, int y, int head);
+
     private:
         SDL( void );
         SDL_Window*     _Window;
         SDL_Surface     *_screenSurface;
         SDL_Event       _event;
-        SDL_Rect        _rect;
         unsigned        _boxcolor;
         unsigned        _backgroundcolor;
         int             _blockHeight;
