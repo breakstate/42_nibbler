@@ -19,6 +19,8 @@ ObjectManager( void );
 int		collisionManager( void );
 void	generateFood( void );
 void	moveSnake( void );
+int		getFoodX( void );
+int		getFoodY( void );
 void	setSnakeDir( eDir direction );
 eDir	getSnakeDir( void );
 std::vector<segment>	getSnakeBody( void );

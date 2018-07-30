@@ -27,24 +27,25 @@ int		ObjectManager::collisionManager( void ){
 	if (this->_snake->checkHeadCollision( _foodX, _foodY )){
 		//std::cout << "food collision" << std::endl;
 		this->_snake->grow();
+		this->generateFood();
 	}
 	if ((index = this->_snake->checkBodyCollision( x, y ))){
-		//std::cout << "self collision" << std::endl;
-		//this->_snake->chop( index );
+		std::cout << "self collision" << std::endl;
+		this->_snake->chop( index );
 	}
 	return (0);
 }
 
 void	ObjectManager::generateFood( void ){
-	while (this->_snake->checkHeadCollision( _foodX, _foodY )){
-	//this->_foodX = (rand() % (SCRN_WIDTH + 1)) - 2; // actual
-	//this->_foodY = (rand() % (SCRN_HEIGHT + 1)) - 2; // actual
+	while (1){
+		this->_foodX = (rand() % (640 / 12));
+		this->_foodY = (rand() % (640 / 12));
+		std::cout << _foodX << ";" << _foodY << std::endl;
+		if (!(this->_snake->checkHeadCollision( _foodX, _foodY )) &&
+			!(this->_snake->checkHeadCollision( _foodX, _foodY ))){
+			break;
+		}
 	}
-
-	this->_foodX = 7; // test // debug
-	this->_foodY = 10; // test // debug
-
-	//debug print
 	std::cout << "Food:\nx: " << this->_foodX << "	y: " << this->_foodY << std::endl;
 }
 
@@ -52,6 +53,15 @@ void	ObjectManager::moveSnake( void ){
 	this->_snake->move();
 	this->_snake->debugPrint();
 }
+
+int		ObjectManager::getFoodX( void ){
+	return (this->_foodX);
+}
+
+int		ObjectManager::getFoodY( void ){
+	return (this->_foodY);
+}
+
 
 void	ObjectManager::setSnakeDir( eDir direction ){
 	if (direction != OTHER) {

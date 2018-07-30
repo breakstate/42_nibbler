@@ -14,27 +14,23 @@ Snake::Snake( int startX, int startY, eDir startDir ){
 	this->_direction = startDir;
 	this->_body.insert(this->_body.begin(), *temp);
 	delete temp;
-	this->grow(); // debug // test
-	this->grow(); // debug // test
-	this->grow(); // debug // test
-	this->grow(); // debug // test
-	this->grow(); // debug // test
+	this->grow();
 }
 
 void		Snake::move( void ){
 	this->debugPrint(); // debug
 	switch(this->_direction){
 	case LEFT:
-		this->_body[0].x -=10;
+		this->_body[0].x -=1;
 		break;
 	case UP:
-		this->_body[0].y -=10;
+		this->_body[0].y -=1;
 		break;
 	case RIGHT:
-		this->_body[0].x +=10;
+		this->_body[0].x +=1;
 		break;
 	case DOWN:
-		this->_body[0].y +=10;
+		this->_body[0].y +=1;
 		break;
 	case OTHER:
 		std::cout << "other" << std::endl;
@@ -94,8 +90,8 @@ int			Snake::checkBodyCollision( int x, int y ){
 
 void		Snake::grow( void ){
 	segment *temp = new segment;
-	temp->x = this->_body.back().x;// + 1;
-	temp->y = this->_body.back().y;// + 1;
+	temp->x = this->_body.back().x;
+	temp->y = this->_body.back().y;
 	temp->xAhead = this->_body.back().x;
 	temp->yAhead = this->_body.back().y;
 	temp->head = 0;

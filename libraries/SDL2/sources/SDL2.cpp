@@ -53,47 +53,51 @@ int         SDL::keyHook()   {
         switch (_event.type) {
            case SDL_KEYDOWN:
                switch (_event.key.keysym.sym) {
-                   case SDLK_UP: return UP;
-                   case SDLK_DOWN: return DOWN;
-                   case SDLK_LEFT: return LEFT;
-                   case SDLK_RIGHT: return RIGHT;
+                   case SDLK_UP: return UP; std::cout << "up key" << std::endl;
+                   case SDLK_DOWN: return DOWN; std::cout << "up down" << std::endl;
+                   case SDLK_LEFT: return LEFT; std::cout << "up left" << std::endl;
+                   case SDLK_RIGHT: return RIGHT; std::cout << "up right" << std::endl;
                }
         }
     }
     return (OTHER);
 }
 
-void    SDL::print(std::vector<segment>	body) {
-    std::cout << "Printing...." << std::endl;
-    std::cout << "Head X: " << body[0].x << std::endl;
-    std::cout << "Head Y: " << body[0].y << std::endl;
-    SDL_FillRect(this->_screenSurface, NULL, 0x000000);
-    this->_rect.w = this->_blockWidth;
-    this->_rect.h = this->_blockHeight;
-    std::cout << "X: " << ((this->_WindowWidth - this->_rect.w) / 2) << std::endl;
-    std::cout << "Y: " << ((this->_WindowHeight - this->_rect.h) / 2) << std::endl;
-    for (int i = 0; i < body.size(); i++){ // TESTNG
-        this->putpixel(body[i].x, body[i].y, 0x0000ff);
-    }
-    this->_boxcolor = SDL_MapRGB(this->_screenSurface->format, 0, 0, 255);
+void    SDL::print(std::vector<segment>	body, int foodX, int foodY) {
+    std::cout << "Printing...." << std::endl; // debug
+    std::cout << "Head X: " << body[0].x << std::endl; // debug
+    std::cout << "Head Y: " << body[0].y << std::endl; // debug
+
     this->_backgroundcolor = SDL_MapRGB(this->_screenSurface->format, 0, 0, 0);
+
     SDL_FillRect(this->_screenSurface, NULL, this->_backgroundcolor);
-    SDL_FillRect(this->_screenSurface, &this->_rect, this->_boxcolor);
-    SDL_FillRect(this->_screenSurface, NULL, this->_backgroundcolor);
-    SDL_FillRect(this->_screenSurface, &this->_rect, this->_boxcolor);
+
+    // code for drawing rects
+    this->print_rect(foodX, foodY, 3);
+    for (int i = 0; i < body.size(); i++){ // TESTNG
+        this->print_rect(body[i].x, body[i].y, body[i].head);
+    }
+
     SDL_UpdateWindowSurface(this->_Window);
 }
 
-void    SDL::putpixel(unsigned int x, unsigned int y, unsigned int colour) {
-    unsigned int *pxlptr;
-    int         lineoffset;
-    /*if ((int)y >= this->height || (int)y < 0)
-        return;
-    if ((int)x >= this->width || (int)x < 0)
-        return;*/
-    lineoffset = (y * 640) + x;
-    pxlptr = (unsigned int *)this->_screenSurface->pixels;
-    pxlptr[lineoffset] = colour;
+void    SDL::print_rect(int x, int y, int head){
+    SDL_Rect rect;
+    int offset = 1;
+
+    if (head == 0)
+        this->_boxcolor = SDL_MapRGB(this->_screenSurface->format, 0, 0, 255);
+    else if (head == 1)
+        this->_boxcolor = SDL_MapRGB(this->_screenSurface->format, 0, 255, 0);
+    else 
+        this->_boxcolor = SDL_MapRGB(this->_screenSurface->format, 255, 0, 0);
+
+    rect.w = this->_blockWidth;
+    rect.h = this->_blockHeight;
+    // change boxcolor accordingly
+    rect.x = x * (this->_blockWidth + offset);
+    rect.y = y * (this->_blockHeight + offset);
+    SDL_FillRect(this->_screenSurface, &rect, this->_boxcolor);
 }
 
 SDL         *create(int height, int width) {

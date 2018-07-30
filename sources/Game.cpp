@@ -30,21 +30,19 @@ void	Game::gameloop( void ){
 	srand(time(NULL)); // for random dir
 	this->_OM.generateFood();
 	int	tick = 0;
-	unsigned int microseconds = 1000000;
+	unsigned int microseconds = 100000;
 	int quit = 0;
 	while (!(quit)){
-		if (this->_OM.collisionManager())
-			std::cout << "You'd be so dead rn" << std::endl;
+		if (tick > 1)
+			if (this->_OM.collisionManager())
+				std::cout << "You'd be so dead rn" << std::endl;
+		
 		eDir direction = static_cast<eDir>(this->_LM->keyHook());
 		std::cout << "Direction is: " << direction << std::endl;
 		this->_OM.setSnakeDir( direction );
+		this->_LM->print(this->_OM.getSnakeBody(), this->_OM.getFoodX(), this->_OM.getFoodY());
 		this->_OM.moveSnake();
-		this->_LM->print(this->_OM.getSnakeBody());
-		// if (tick == 5){
-		// 	this->_OM.setSnakeDir( this->testAI(0) ); // debug // test
-		// 	tick = 0;
-		// }
-		// tick++;
+		tick++;
 		usleep(microseconds);
 	}
 }

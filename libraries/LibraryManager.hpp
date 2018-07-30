@@ -6,7 +6,7 @@
 class LibraryManager {
     public:
         virtual int keyHook() = 0;
-        virtual void print(std::vector<segment>	body) = 0;
+        virtual void print(std::vector<segment>	body, int foodX, int foodY) = 0;
         virtual ~LibraryManager(){};
 };
 
