@@ -57,6 +57,7 @@ int         SDL::keyHook()   {
                    case SDLK_DOWN: return DOWN; std::cout << "up down" << std::endl;
                    case SDLK_LEFT: return LEFT; std::cout << "up left" << std::endl;
                    case SDLK_RIGHT: return RIGHT; std::cout << "up right" << std::endl;
+                   //case SDLK_ESCAPE: quit
                }
         }
     }

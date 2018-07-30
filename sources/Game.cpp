@@ -30,21 +30,58 @@ void	Game::gameloop( void ){
 	srand(time(NULL)); // for random dir
 	this->_OM.generateFood();
 	int	tick = 0;
-	unsigned int microseconds = 50000;
+	unsigned int microseconds = 100000;
 	int quit = 0;
+	eDir direction;
 	while (!(quit)){
 		if (tick > 1){
 			if (this->_OM.collisionManager())
 				std::cout << "You'd be so dead rn" << std::endl;
 		}else
 			tick++;
-		eDir direction = static_cast<eDir>(this->_LM->keyHook());
+		direction = _getDir();
+		//eDir direction = static_cast<eDir>(this->_LM->keyHook());
 		std::cout << "Direction is: " << direction << std::endl;
 		this->_OM.setSnakeDir( direction );
 		this->_LM->print(this->_OM.getSnakeBody(), this->_OM.getFoodX(), this->_OM.getFoodY());
 		this->_OM.moveSnake();
 		usleep(microseconds);
 	}
+}
+
+eDir	Game::_getDir(){
+	int direction = (this->_LM->keyHook());
+	switch (direction){
+	case(0):
+		if (this->_OM.getSnakeDir() != RIGHT && this->_OM.getSnakeDir() != LEFT){
+			std::cout << "LEFT" << std::endl; // debug AI direction
+			return (LEFT);
+		}
+		std::cout << "already left or right" << std::endl; // debug AI direction
+		break;
+	case(1):
+		if (this->_OM.getSnakeDir() != DOWN && this->_OM.getSnakeDir() != UP){
+			std::cout << "UP" << std::endl; // debug AI direction
+			return (UP);
+		}
+		std::cout << "already up or down" << std::endl; // debug AI direction
+		break;
+	case(2):
+		if (this->_OM.getSnakeDir() != LEFT && this->_OM.getSnakeDir() != RIGHT){
+			std::cout << "RIGHT" << std::endl; // debug  AI direction
+			return (RIGHT);
+		}
+		std::cout << "already right or left" << std::endl; // debug AI direction
+		break;
+	case(3):
+		if (this->_OM.getSnakeDir() != UP && this->_OM.getSnakeDir() != DOWN){
+			std::cout << "DOWN" << std::endl; // debug AI direction
+			return (DOWN);
+		}
+		std::cout << "already down or up" << std::endl; // debug AI direction
+		break;
+	};
+	return (OTHER);
 }
 
 eDir	Game::testAI( int safe ){

@@ -46,6 +46,8 @@ void		Snake::move( void ){
 	}
 }
 
+
+
 int			Snake::getLength( void ){
 	return (this->_body.size());
 	//return (this->_length);

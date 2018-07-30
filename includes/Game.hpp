@@ -29,6 +29,7 @@ void            *_handler;
 createLib_t     *createLib;
 destroyLib_t    *destroyLib;
 LibraryManager  *_LM;
+eDir			_getDir( void );
 
 };
 
