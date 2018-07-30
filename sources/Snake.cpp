@@ -71,7 +71,7 @@ void		Snake::setDir( eDir direction ){
 
 int			Snake::checkHeadCollision( int x, int y ){
 	// check collision with own head
-	if (this->getHeadX() == x && this->getHeadY() == y)
+	if ((this->getHeadX() == x) && (this->getHeadY() == y))
 		return (1);
 	return (0);
 }

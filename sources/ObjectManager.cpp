@@ -16,11 +16,11 @@ int		ObjectManager::collisionManager( void ){
 	int	y = this->_snake->getHeadY();
 	int	index;
 	//std::cout << "Collision debug:\n" << "x= " << x << "; y= " << y << std::endl;
-	if ((x <= 0) || (x >= SCRN_WIDTH)){
+	if ((x < 0) || (x >= SCRN_WIDTH)){
 		//std::cout << "x collision" << std::endl;
 		return (1);
 	}
-	if ((y <= 0) || (y >= SCRN_HEIGHT)){
+	if ((y < 0) || (y >= SCRN_HEIGHT)){
 		//std::cout << "y collision" << std::endl;
 		return (1);
 	}
