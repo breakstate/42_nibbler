@@ -1,5 +1,7 @@
 #include "../../LibraryManager.hpp"
-#include "SFML/Graphics.hpp"
+# include <SFML/System.hpp>
+# include <SFML/Window.hpp>
+# include <SFML/Graphics.hpp>
 
 #ifndef SFML_LIB
 #define SFML_LIB
@@ -13,6 +15,9 @@ class SFML: public LibraryManager {
         int         keyHook();
         void        print(std::vector<segment>	body);
     private:
+        sf::RenderWindow    _Window;
+        int                 _WindowHeight;
+        int                 _WindowWidth;
 };
 
 #ifdef __cplusplus

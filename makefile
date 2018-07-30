@@ -15,6 +15,8 @@ NAME = nibbler
 CC = clang++
 
 FLAGS =	
+ 
+LDFLAGS = -rpath libraries/SFML/SFML/lib
 
 HEADERS = -I includes/
 
@@ -33,8 +35,7 @@ SDL_MAKE = make -C libraries/SDL2
 all: $(NAME)
 
 $(NAME): $(COMPILED_PATHS)
-	$(SDL_MAKE)
-	$(CC) -o $(NAME) $(FLAGS) $(HEADERS) $(COMPILED_PATHS)
+	$(CC) $(LDFLAGS) -o $(NAME) $(FLAGS) $(HEADERS) $(COMPILED_PATHS)
 
 $(COMPILED_PATHS): $(OBJ_DIR)%.o: $(SRC_DIR)%.cpp
 	@/bin/mkdir -p $(OBJ_DIR)

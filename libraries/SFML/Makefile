@@ -1,38 +1,41 @@
+CLANG = clang++
+
 NAME = SFML.so
 
-CC = clang++
+DIR_SFML = SFML
 
-FLAGS = -lsfml-graphics -lsfml-window -lsfml-system
+GL =	-rpath $(HOME)/.brew/lib -L$(HOME)/.brew/lib 
+GL +=	-lsfml-graphics -lsfml-audio -lsfml-window -lsfml-system
 
-# required for SFML programs
-LDLIBS = -L /goinfre/qmanamel/.brew/Cellar/sfml/2.4.2_1/lib/
+CFLAGS = -Wall -Werror -Wextra
 
-HEADERS = -I includes/
+SFML_FLAGS = -Iincludes/ -I$(HOME)/.brew/Cellar/sfml/2.4.2_1/include/
 
-SRC_DIR = sources/
+HEADER = includes/SFML.hpp
 
-OBJ_DIR_NAME =	objects
-OBJ_DIR = ./$(OBJ_DIR_NAME)/
+SRC =	sources/SFML.cpp
 
-FILENAMES = SFML
+OBJ = $(SRC:.cpp=.cpp.o)
 
-COMPILED_PATHS :=	$(addsuffix .o,$(FILENAMES))
-COMPILED_PATHS :=	$(addprefix $(OBJ_DIR),$(COMPILED_PATHS))
+%.cpp.o: %.cpp
+	@$(CLANG) $(CFLAGS) $(SFML_FLAGS) -c $< -o $@
 
 all: $(NAME)
 
-$(NAME): $(COMPILED_PATHS)
-	$(CC) -shared -fPIC $(FLAGS) -o $(NAME) $(HEADERS) $(LDLIBS) $(COMPILED_PATHS)
+$(NAME): $(OBJ)
+	@$(CLANG) -shared -fPIC $(GL) $(CFLAGS) $(SFML_FLAGS) -o $(NAME) $(OBJ)
 
-$(COMPILED_PATHS): $(OBJ_DIR)%.o: $(SRC_DIR)%.cpp
-	@/bin/mkdir -p $(OBJ_DIR)
-	$(CC) -c $(HEADERS) $< -o $@
+extract:
+	#Ignore Thisl
+	#@git clone https://github.com/SFML/SFML.git
 
 clean:
-	rm -f $(COMPILED_PATHS)
-	/usr/bin/find . -name "$(OBJ_DIR_NAME)" -maxdepth 1 -type d -empty -delete
+	@rm -rf $(OBJ)
+	@rm -rf sfml
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -rf $(NAME)
 
 re: fclean all
+
+.PHONY: all clean fclean re
