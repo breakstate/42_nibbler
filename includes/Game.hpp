@@ -17,7 +17,7 @@ Game( void );
 void	gameloop( void );
 eDir	testAI( int safe );
 void	setLib( LibraryManager *newLib );
-void	changeLib();
+void	setLib();
 void	deleteLib( void );
 
 protected:

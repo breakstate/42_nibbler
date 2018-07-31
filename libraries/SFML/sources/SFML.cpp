@@ -30,6 +30,8 @@ int		SFML::keyHook() {
 			return UP;
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
 			return DOWN;
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::L))
+			return SWITCH_LIB;
 		// else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 		// {
 		//     // quit...
@@ -50,13 +52,13 @@ void	SFML::print(std::vector<segment>	body, int foodX, int foodY) {
 	this->_Window.display();
 
 	// clear the window with black color
-	window.clear(sf::Color::Black);
+	this->_Window.clear(sf::Color::Black);
 
 	// draw everything here...
 	// window.draw(...);
 
 	// end the current frame
-	window.display();
+	this->_Window.display();
 }
 
 SFML	*create(int height, int width) {

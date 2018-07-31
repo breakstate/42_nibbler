@@ -9,19 +9,7 @@
 Game::Game( void ) : _libID(0){
 	_libs[0] = "libraries/SDL2/SDL2.so";
 	_libs[1] = "libraries/SFML/SFML.so";
-	this->_handler = dlopen(this->_libs[0], RTLD_NOW);
-	if (!this->_handler) {
-		std::cout << "DLOPEN Error" << std::endl;
-		std::cout << dlerror() << std::endl;
-	}
-	createLib = (createLib_t*) dlsym(this->_handler, "create");
-	destroyLib = (destroyLib_t*) dlsym(this->_handler, "destroy");
-	if (dlerror()) {
-		std::cout << "ERROR" << std::endl;
-		std::cout << dlerror() << std::endl;
-		std::cout << "ERROR" << std::endl;
-	}
-	this->setLib(createLib(640, 640));
+	this->setLib();
 }
 
 Game::~Game( void ){}
@@ -81,8 +69,9 @@ eDir	Game::_getKey(){
 		std::cout << "already down or up" << std::endl; // debug AI direction
 		break;
 	case(4):
-		this->_libID++;
-		this->changeLib();
+		this->_libID = (this->_libID +=1) % 3 ;
+		deleteLib();
+		this->setLib();
 		break;
 	};
 	return (OTHER);
@@ -124,13 +113,18 @@ eDir	Game::testAI( int safe ){
 	return (OTHER);
 }
 
-void	Game::changeLib() {
-	deleteLib();
-	dlclose(this->_handler);
+void	Game::setLib() {
 	this->_handler = dlopen(this->_libs[this->_libID], RTLD_NOW);
 	if (!this->_handler) {
 		std::cout << "DLOPEN Error" << std::endl;
 		std::cout << dlerror() << std::endl;
+	}
+	createLib = (createLib_t*) dlsym(this->_handler, "create");
+	destroyLib = (destroyLib_t*) dlsym(this->_handler, "destroy");
+	if (dlerror()) {
+		std::cout << "ERROR" << std::endl;
+		std::cout << dlerror() << std::endl;
+		std::cout << "ERROR" << std::endl;
 	}
 	this->setLib(createLib(640, 640));
 }
@@ -140,5 +134,7 @@ void	Game::setLib( LibraryManager *newLib ) {
 }
 
 void	Game::deleteLib( void ) {
-	destroyLib(this->_LM);
+	LibraryManager	*newLib = this->_LM;
+	destroyLib(newLib);
+	dlclose(this->_handler);
 }
