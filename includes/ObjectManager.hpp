@@ -19,11 +19,19 @@ ObjectManager( void );
 int		collisionManager( void );
 void	generateFood( void );
 void	moveSnake( void );
+int		getFoodX( void );
+int		getFoodY( void );
 void	setSnakeDir( eDir direction );
+eDir	getSnakeDir( void );
+std::vector<segment>	getSnakeBody( void );
+void	draw( void );
 
 protected:
 
 private:
+
+void	_drawSnake( void );
+void	_drawFood( void );
 
 Snake	*_snake;
 int		_foodX;

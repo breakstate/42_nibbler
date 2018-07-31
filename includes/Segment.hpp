@@ -2,7 +2,6 @@
 # define SEGMENT_H
 
 struct segment {
-	int	index;
 	int	x;
 	int	y;
 	int	xAhead;
