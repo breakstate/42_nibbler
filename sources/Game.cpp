@@ -8,7 +8,7 @@
 
 Game::Game( void ) : _libID(0){
 	_libs[0] = "libraries/SFML/SFML.so";
-	_libs[1] = "libraries/SFML/SFML.so";
+	_libs[1] = "libraries/SDL2/SDL2.so";
 	this->setLib();
 }
 
@@ -69,7 +69,7 @@ eDir	Game::_getKey(){
 		std::cout << "already down or up" << std::endl; // debug AI direction
 		break;
 	case(4):
-		this->_libID = (this->_libID +=1) % 3 ;
+		this->_libID = (this->_libID +=1) % 2 ;
 		deleteLib();
 		this->setLib();
 		break;
