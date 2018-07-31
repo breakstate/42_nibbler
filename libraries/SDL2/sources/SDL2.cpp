@@ -53,11 +53,13 @@ int         SDL::keyHook()   {
         }
         switch (_event.type) {
            case SDL_KEYDOWN:
+               std::cout << _event.key.keysym.sym << std::endl;
                switch (_event.key.keysym.sym) {
                    case SDLK_UP: return UP; std::cout << "up key" << std::endl;
                    case SDLK_DOWN: return DOWN; std::cout << "up down" << std::endl;
                    case SDLK_LEFT: return LEFT; std::cout << "up left" << std::endl;
                    case SDLK_RIGHT: return RIGHT; std::cout << "up right" << std::endl;
+                   case 108: return SWITCH_LIB; std::cout << "Switch Libraries" << std::endl;
                    //case SDLK_ESCAPE: quit
                }
         }

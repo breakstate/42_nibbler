@@ -7,7 +7,7 @@
 #include <dlfcn.h>
 
 Game::Game( void ) {
-	this->_handler = dlopen("libraries/SFML/SFML.so", RTLD_NOW);
+	this->_handler = dlopen("libraries/SDL2/SDL2.so", RTLD_NOW);
 	if (!this->_handler) {
 		std::cout << "DLOPEN Error" << std::endl;
 		std::cout << dlerror() << std::endl;
@@ -22,9 +22,7 @@ Game::Game( void ) {
 	this->setLib(createLib(640, 640));
 }
 
-Game::~Game( void ){
-
-}
+Game::~Game( void ){}
 
 void	Game::gameloop( void ){
 	srand(time(NULL)); // for random dir

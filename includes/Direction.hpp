@@ -6,6 +6,7 @@ enum eDir {
 	UP,
 	RIGHT,
 	DOWN,
+	SWITCH_LIB,
 	OTHER
 };
 
