@@ -16,12 +16,13 @@ int		ObjectManager::collisionManager( void ){
 	int	y = this->_snake->getHeadY();
 	int	index;
 	//std::cout << "Collision debug:\n" << "x= " << x << "; y= " << y << std::endl;
-	if ((x < 0) || (x >= SCRN_WIDTH)){
-		//std::cout << "x collision" << std::endl;
+	if ((x < 0) || (x >= (SCRN_WIDTH / 11))){
+		exit(0);
 		return (1);
 	}
-	if ((y < 0) || (y >= SCRN_HEIGHT)){
+	if ((y < 0) || (y >= (SCRN_HEIGHT / 11))){
 		//std::cout << "y collision" << std::endl;
+		exit(0);
 		return (1);
 	}
 	if (this->_snake->checkHeadCollision( _foodX, _foodY )){
@@ -38,8 +39,8 @@ int		ObjectManager::collisionManager( void ){
 
 void	ObjectManager::generateFood( void ){
 	while (1){
-		this->_foodX = (rand() % (640 / 12));
-		this->_foodY = (rand() % (640 / 12));
+		this->_foodX = (rand() % (640 / 11));
+		this->_foodY = (rand() % (640 / 11));
 		std::cout << _foodX << ";" << _foodY << std::endl;
 		if (!(this->_snake->checkHeadCollision( _foodX, _foodY )) &&
 			!(this->_snake->checkHeadCollision( _foodX, _foodY ))){
