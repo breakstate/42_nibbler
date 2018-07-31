@@ -16,20 +16,22 @@ Game( void );
 
 void	gameloop( void );
 eDir	testAI( int safe );
-void    setLib( LibraryManager *newLib );
-void    deleteLib( void );
+void	setLib( LibraryManager *newLib );
+void	changeLib();
+void	deleteLib( void );
 
 protected:
 
 private:
 
-ObjectManager   _OM;
-char            *_libs[3];
-void            *_handler;
-createLib_t     *createLib;
-destroyLib_t    *destroyLib;
-LibraryManager  *_LM;
-eDir			_getDir( void );
+ObjectManager	_OM;
+const char		*_libs[3];
+int				_libID;
+void			*_handler;
+createLib_t		*createLib;
+destroyLib_t	*destroyLib;
+LibraryManager	*_LM;
+eDir			_getKey( void );
 
 };
 
