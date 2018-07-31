@@ -43,6 +43,18 @@ void	SFML::print(std::vector<segment>	body, int foodX, int foodY) {
 	std::cout << "Head Value is" << body[0].x << std::endl;
 
 	this->_Window.clear(sf::Color::White);
+
+	// background test
+	sf::Texture texture;
+	if (!texture.loadFromFile("doge.jpg", sf::IntRect(0, 0, 640, 640)))
+	{
+		std::cout << "NOPE" << std::endl;
+	}
+	texture.setRepeated(true);
+	sf::Sprite background(texture);
+	this->_Window.draw(background);
+	// background test end
+
 	this->print_rect(foodX, foodY, 3);
 
     for (int i = 0; i < static_cast<int>(body.size()); i++){ // TESTNG
@@ -53,7 +65,8 @@ void	SFML::print(std::vector<segment>	body, int foodX, int foodY) {
 }
 
 void	SFML::print_rect(int x, int y, int colour){
-	sf::RectangleShape rect(sf::Vector2f(10, 10));
+	//sf::RectangleShape rect(sf::Vector2f(10, 10));
+	sf::CircleShape rect(5, 4);
 	if (colour == 0)
 		rect.setFillColor(sf::Color::Blue);
 	else if (colour == 1)

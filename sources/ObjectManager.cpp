@@ -18,12 +18,10 @@ int		ObjectManager::collisionManager( void ){
 	//std::cout << "Collision debug:\n" << "x= " << x << "; y= " << y << std::endl;
 	if ((x < 0) || (x >= (SCRN_WIDTH / 11))){
 		exit(0);
-		return (1);
 	}
 	if ((y < 0) || (y >= (SCRN_HEIGHT / 11))){
 		//std::cout << "y collision" << std::endl;
 		exit(0);
-		return (1);
 	}
 	if (this->_snake->checkHeadCollision( _foodX, _foodY )){
 		//std::cout << "food collision" << std::endl;
@@ -31,8 +29,12 @@ int		ObjectManager::collisionManager( void ){
 		this->generateFood();
 	}
 	if ((index = this->_snake->checkBodyCollision( x, y ))){
-		std::cout << "self collision" << std::endl;
-		this->_snake->chop( index );
+		//std::cout << "self collision" << std::endl;
+
+		exit(0);
+
+		// the pdf hates fun
+		//this->_snake->chop( index );
 	}
 	return (0);
 }
