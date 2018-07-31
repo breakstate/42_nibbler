@@ -42,23 +42,27 @@ int		SFML::keyHook() {
 void	SFML::print(std::vector<segment>	body, int foodX, int foodY) {
 	std::cout << "Head Value is" << body[0].x << std::endl;
 
-	sf::RectangleShape rectangle(sf::Vector2f(10, 10));
-	rectangle.setPosition(body[0].x, body[0].y);
+	this->_Window.clear(sf::Color::White);
+	this->print_rect(foodX, foodY, 3);
 
-	foodX = 0;
-	foodY = 0;
+    for (int i = 0; i < static_cast<int>(body.size()); i++){ // TESTNG
+        this->print_rect(body[i].x, body[i].y, body[i].head);
+    }
 
-	this->_Window.draw(rectangle);
 	this->_Window.display();
+}
 
-	// clear the window with black color
-	this->_Window.clear(sf::Color::Black);
+void	SFML::print_rect(int x, int y, int colour){
+	sf::RectangleShape rect(sf::Vector2f(10, 10));
+	if (colour == 0)
+		rect.setFillColor(sf::Color::Blue);
+	else if (colour == 1)
+		rect.setFillColor(sf::Color::Green);
+	else
+		rect.setFillColor(sf::Color::Red);
 
-	// draw everything here...
-	// window.draw(...);
-
-	// end the current frame
-	this->_Window.display();
+	rect.setPosition(x * (10 + 1), y * (10 + 1));
+	this->_Window.draw(rect);
 }
 
 SFML	*create(int height, int width) {

@@ -14,6 +14,7 @@ class SFML: public LibraryManager {
         void        init();
         int         keyHook();
         void        print(std::vector<segment>	body, int foodX, int foodY);
+        void        print_rect(int x, int y, int colour);
     private:
         sf::RenderWindow    _Window;
         int                 _WindowHeight;

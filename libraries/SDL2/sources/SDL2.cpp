@@ -84,13 +84,13 @@ void    SDL::print(std::vector<segment>	body, int foodX, int foodY) {
     SDL_UpdateWindowSurface(this->_Window);
 }
 
-void    SDL::print_rect(int x, int y, int head){
+void    SDL::print_rect(int x, int y, int colour){
     SDL_Rect rect;
     int offset = 1;
 
-    if (head == 0)
+    if (colour == 0)
         this->_boxcolor = SDL_MapRGB(this->_screenSurface->format, 0, 0, 255);
-    else if (head == 1)
+    else if (colour == 1)
         this->_boxcolor = SDL_MapRGB(this->_screenSurface->format, 0, 255, 0);
     else 
         this->_boxcolor = SDL_MapRGB(this->_screenSurface->format, 255, 0, 0);
