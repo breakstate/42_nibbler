@@ -7,7 +7,7 @@
 #include <dlfcn.h>
 
 Game::Game( void ) : _libID(0){
-	_libs[0] = "libraries/SFML/SFML.so";
+	_libs[0] = "libraries/GLFW/GLFW.so";
 	_libs[1] = "libraries/SDL2/SDL2.so";
 	this->setLib();
 }
