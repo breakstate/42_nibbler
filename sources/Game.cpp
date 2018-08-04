@@ -7,8 +7,8 @@
 #include <dlfcn.h>
 
 Game::Game( void ) : _libID(0){
-	_libs[0] = "libraries/GLFW/GLFW.so";
-	_libs[1] = "libraries/SDL2/SDL2.so";
+	_libs[0] = "libraries/SDL2/SDL2.so";
+	_libs[1] = "libraries/SFML/SFML.so";
 	this->setLib();
 }
 
@@ -69,7 +69,12 @@ eDir	Game::_getKey(){
 		std::cout << "already down or up" << std::endl; // debug AI direction
 		break;
 	case(4):
-		this->_libID = (this->_libID +=1) % 2 ;
+		this->_libID = 0 ;
+		deleteLib();
+		this->setLib();
+		break;
+	case(5):
+		this->_libID = 1 ;
 		deleteLib();
 		this->setLib();
 		break;

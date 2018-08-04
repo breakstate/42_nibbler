@@ -35,8 +35,11 @@ void		Snake::move( void ){
 	case OTHER:
 		std::cout << "other" << std::endl;
 		break;
-	case SWITCH_LIB:
-		std::cout << "switch lib" << std::endl;
+	case SWITCH_SDL:
+		std::cout << "switch sdl" << std::endl;
+		break;
+	case SWITCH_SFML:
+		std::cout << "switch sfml" << std::endl;
 		break;
 	};
 	for (int i = 0; i < this->_body.size(); i++){

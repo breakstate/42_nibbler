@@ -30,11 +30,13 @@ int		SFML::keyHook() {
 			return UP;
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
 			return DOWN;
-		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::L))
-			return SWITCH_LIB;
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1))
+			return SWITCH_SDL;
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num2))
+			return SWITCH_SFML;
 		// else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 		// {
-		//     // quit...
+		// 	return QUIT;
 		// }
 	}
 	return (OTHER);
