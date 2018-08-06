@@ -17,7 +17,7 @@ SDL::~SDL() {
 	SDL_Quit();
 }
 
-void        SDL::setScreen(SDL_Window *screen) { this->_Window = screen; }
+void		SDL::setScreen(SDL_Window *screen) { this->_Window = screen; }
 
 SDL_Window  *SDL::getScreen() { return (this->_Window); }
 
@@ -35,7 +35,7 @@ void        SDL::init() {
 	
 }
 
-int         SDL::keyHook()   {
+int			SDL::keyHook()   {
 
 	while (SDL_PollEvent(&_event))
 	{
@@ -58,7 +58,7 @@ int         SDL::keyHook()   {
 	return (OTHER);
 }
 
-void    SDL::print(std::vector<segment>	body, int foodX, int foodY) {
+void		SDL::print(std::vector<segment>	body, int foodX, int foodY) {
 	std::cout << "Printing...." << std::endl; // debug
 	std::cout << "Head X: " << body[0].x << std::endl; // debug
 	std::cout << "Head Y: " << body[0].y << std::endl; // debug
@@ -76,7 +76,7 @@ void    SDL::print(std::vector<segment>	body, int foodX, int foodY) {
 	SDL_UpdateWindowSurface(this->_Window);
 }
 
-void    SDL::print_rect(int x, int y, int colour){
+void		SDL::print_rect(int x, int y, int colour){
 	SDL_Rect rect;
 	int offset = 1;
 
@@ -95,10 +95,10 @@ void    SDL::print_rect(int x, int y, int colour){
 	SDL_FillRect(this->_screenSurface, &rect, this->_boxcolor);
 }
 
-SDL         *create(int height, int width) {
+SDL			*create(int height, int width) {
 	return new SDL(height, width);
 }
 
-void        destroy(LibraryManager *lib) {
+void		destroy(LibraryManager *lib) {
 	delete (lib);
 }
