@@ -19,10 +19,10 @@ int		ObjectManager::collisionManager( void ){
 	int	x = this->_snake->getHeadX();
 	int	y = this->_snake->getHeadY();
 	int	index;
-	if ((x < 0) || (x >= (this->_width))){ // moving scaling to lib
+	if ((x < 0) || (x >= (this->_width / 11))){ // moving scaling to lib
 		exit(0);
 	}
-	if ((y < 0) || (y >= (this->_height))){ // moving scaling to lib
+	if ((y < 0) || (y >= (this->_height / 11))){ // moving scaling to lib
 		exit(0);
 	}
 	if (this->_snake->checkHeadCollision( _foodX, _foodY )){
@@ -40,8 +40,8 @@ int		ObjectManager::collisionManager( void ){
 
 void	ObjectManager::generateFood( void ){
 	while (1){
-		this->_foodX = (rand() % (this->_width));//   /11 // need to move sacling to lib
-		this->_foodY = (rand() % (this->_height));//   /11 // need to move sacling to lib
+		this->_foodX = (rand() % (this->_width / 11));//   /11 // need to move sacling to lib
+		this->_foodY = (rand() % (this->_height / 11));//   /11 // need to move sacling to lib
 		if (!(this->_snake->checkHeadCollision( _foodX, _foodY )) &&
 			!(this->_snake->checkBodyCollision( _foodX, _foodY ))){
 			break;

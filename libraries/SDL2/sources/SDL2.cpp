@@ -51,7 +51,7 @@ int         SDL::keyHook()   {
 					case SDLK_RIGHT: return RIGHT; std::cout << "up right" << std::endl;
 					case SDLK_1: std::cout << "Switch SDL" << std::endl; return SWITCH_SDL;
 					case SDLK_2: std::cout << "Switch SFML" << std::endl; return SWITCH_SFML;
-					case SDLK_3: std::cout << "Switch NCURSES" << std::endl; return SWITCH_SFML;
+					case SDLK_3: std::cout << "Switch NCURSES" << std::endl; return SWITCH_NCURSES;
 				//	   case SDLK_ESCAPE: std::cout << "QUIT" << std::endl; return QUIT;
 				}
 		}
