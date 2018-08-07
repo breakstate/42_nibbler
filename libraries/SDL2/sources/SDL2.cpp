@@ -3,16 +3,13 @@
 #include <iostream>
 
 SDL::SDL(int width, int height) : _blockHeight(10), _blockWidth(10), _WindowHeight(height), _WindowWidth(width) {
-	std::cout << "SDL Constructor called" << std::endl;
 	this->init();
 }
 
 SDL::SDL() {
-	std::cout << "SDL Default Constructor called" << std::endl;
 }
 
 SDL::~SDL() {
-	std::cout << "SDL Default Destructor called" << std::endl;
 	SDL_DestroyWindow( this->getScreen() );
 	SDL_Quit();
 }
@@ -21,14 +18,12 @@ void		SDL::setScreen(SDL_Window *screen) { this->_Window = screen; }
 
 SDL_Window  *SDL::getScreen() { return (this->_Window); }
 
-void        SDL::init() {
+void		SDL::init() {
 	if (SDL_Init( SDL_INIT_EVERYTHING ) < 0 ) {
-		std::cout  << "SDL Initialization Error" << std::endl;
 		return ;
 	}
-	this->setScreen(SDL_CreateWindow("Nibbler", SDL_WINDOWPOS_UNDEFINED,SDL_WINDOWPOS_UNDEFINED,this->_WindowHeight,this->_WindowWidth, SDL_WINDOW_SHOWN));
+	this->setScreen(SDL_CreateWindow("Nibbler", SDL_WINDOWPOS_UNDEFINED,SDL_WINDOWPOS_UNDEFINED,this->_WindowWidth,this->_WindowHeight, SDL_WINDOW_SHOWN));
 	if (!this->getScreen()) {
-		std::cout << "Window not Created" << std::endl;
 	} else {
 		this->_screenSurface = SDL_GetWindowSurface( this->getScreen() );
 	}
@@ -45,13 +40,14 @@ int			SDL::keyHook()   {
 		switch (_event.type) {
 			case SDL_KEYDOWN:
 				switch (_event.key.keysym.sym) {
-					case SDLK_UP: return UP; std::cout << "up key" << std::endl;
-					case SDLK_DOWN: return DOWN; std::cout << "up down" << std::endl;
-					case SDLK_LEFT: return LEFT; std::cout << "up left" << std::endl;
-					case SDLK_RIGHT: return RIGHT; std::cout << "up right" << std::endl;
-					case SDLK_1: std::cout << "Switch SDL" << std::endl; return SWITCH_SDL;
-					case SDLK_2: std::cout << "Switch SFML" << std::endl; return SWITCH_SFML;
-					case SDLK_3: std::cout << "Switch NCURSES" << std::endl; return SWITCH_NCURSES;
+					case SDLK_UP: return UP;
+					case SDLK_DOWN: return DOWN;
+					case SDLK_LEFT: return LEFT;
+					case SDLK_RIGHT: return RIGHT;
+					case SDLK_SPACE: return PAUSE;
+					case SDLK_1: return SWITCH_SDL;
+					case SDLK_2: return SWITCH_SFML;
+					case SDLK_3: return SWITCH_NCURSES;
 				//	   case SDLK_ESCAPE: std::cout << "QUIT" << std::endl; return QUIT;
 				}
 		}
@@ -94,7 +90,7 @@ void		SDL::print_rect(int x, int y, int colour){
 }
 
 
-SDL         *create(int width, int height) {
+SDL			*create(int width, int height) {
 	return new SDL(width, height);
 }
 

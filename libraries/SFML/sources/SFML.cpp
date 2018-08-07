@@ -1,10 +1,18 @@
 #include "../includes/SFML.hpp"
 
+#include <iostream>
+#include <fstream>
+
 SFML::SFML( int width, int height ) : _WindowHeight(height), _WindowWidth(width){
 	this->init();
 }
 
 SFML::~SFML() {
+	// std::ofstream myfile;
+	// myfile.open ("example.txt");
+	// myfile << "Writing this to a file.\n";
+	// myfile.close();
+	std::cout << "SFML Deconstruct" << std::endl;
 	this->_Window.close();
 }
 
