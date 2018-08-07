@@ -42,6 +42,8 @@ void		Snake::move( void ){
 		break;
 	case SWITCH_NCURSES:
 		break;
+	case PAUSE:
+		break;
 	};
 	for (int i = 0; i < this->_body.size(); i++){
 		if (!(this->_body[i].head)){

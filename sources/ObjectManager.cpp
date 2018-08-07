@@ -20,18 +20,25 @@ int		ObjectManager::collisionManager( void ){
 	int	y = this->_snake->getHeadY();
 	int	index;
 	if ((x < 0) || (x >= (this->_width / 11))){ // moving scaling to lib
-		exit(0);
+		std::cout << "x" << std::endl;
+
+		return (1);
 	}
 	if ((y < 0) || (y >= (this->_height / 11))){ // moving scaling to lib
-		exit(0);
+		std::cout << "y" << std::endl;
+
+		return (1);
 	}
 	if (this->_snake->checkHeadCollision( _foodX, _foodY )){
+			std::cout << "head" << std::endl;
 		this->_snake->grow();
 		this->generateFood();
 		// incremement points
 	}
 	if ((index = this->_snake->checkBodyCollision( x, y ))){
-		exit(0); // call library close function
+			std::cout << "body" << std::endl;
+		return (1);
+		// call library close function
 		//the pdf hates fun
 		//this->_snake->chop( index );
 	}

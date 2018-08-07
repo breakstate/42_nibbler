@@ -9,6 +9,7 @@ enum eDir {
 	SWITCH_SDL,
 	SWITCH_SFML,
 	SWITCH_NCURSES,
+	PAUSE,
 	OTHER
 };
 

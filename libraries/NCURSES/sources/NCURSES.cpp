@@ -43,6 +43,8 @@ int			NCURSES::keyHook(){
 				refresh();
 				endwin();
 				exit(1);
+			case ' ':
+				return (PAUSE);
 			case KEY_LEFT:
 				return (LEFT);
 			case KEY_UP:

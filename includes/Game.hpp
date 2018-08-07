@@ -21,6 +21,16 @@ void	setLib( LibraryManager *newLib );
 void	setLib();
 void	deleteLib( void );
 
+
+//Exceptions:
+class MaximumScreenSizeException: public std::exception {
+	virtual const char* what() const throw();
+};
+
+class MinimumscreenSizeException: public std::exception {
+	virtual const char* what() const throw();
+};
+
 protected:
 
 private:
