@@ -6,7 +6,7 @@
 
 class SDL : public LibraryManager {
     public:
-        SDL(int height, int width);
+        SDL(int width, int height);
         virtual ~SDL();
 
         void        setScreen(SDL_Window *screen);

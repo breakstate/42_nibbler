@@ -8,6 +8,7 @@ class ObjectManager {
 
 public:
 
+ObjectManager( int width, int height );
 ObjectManager( void );
 ~ObjectManager( void );
 //ObjectManager( const ObjectManager & srcObj);
@@ -36,6 +37,8 @@ void	_drawFood( void );
 Snake	*_snake;
 int		_foodX;
 int		_foodY;
+int		_height;
+int		_width;
 
 };
 

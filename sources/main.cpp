@@ -1,6 +1,6 @@
 #include "../includes/Game.hpp"
 
-int main(){
-	Game game;
+int main(int argc, char** argv){
+	Game game(std::stoi(argv[1]), std::stoi(argv[2]));
 	game.gameloop();
 }
