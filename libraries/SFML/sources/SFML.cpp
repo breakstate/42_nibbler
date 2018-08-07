@@ -1,12 +1,10 @@
 #include "../includes/SFML.hpp"
 
-SFML::SFML( int height, int width ) : _WindowHeight(height), _WindowWidth(width){
-	std::cout << "SFML constructor called";
+SFML::SFML( int width, int height ) : _WindowHeight(height), _WindowWidth(width){
 	this->init();
 }
 
 SFML::~SFML() {
-	std::cout << "SFML destructor called";
 }
 
 void	SFML::init() {
@@ -34,6 +32,8 @@ int		SFML::keyHook() {
 			return SWITCH_SDL;
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num2))
 			return SWITCH_SFML;
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num3))
+			return SWITCH_NCURSES;
 		// else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 		// {
 		// 	return QUIT;
@@ -42,19 +42,18 @@ int		SFML::keyHook() {
 	return (OTHER);
 }
 void	SFML::print(std::vector<segment>	body, int foodX, int foodY) {
-	std::cout << "Head Value is" << body[0].x << std::endl;
-
 	this->_Window.clear(sf::Color::White);
-
 	// background test
-	sf::Texture texture;
+	
+	/*sf::Texture texture;
 	if (!texture.loadFromFile("doge.jpg", sf::IntRect(0, 0, 640, 640)))
 	{
 		std::cout << "NOPE" << std::endl;
-	}
-	texture.setRepeated(true);
-	sf::Sprite background(texture);
-	this->_Window.draw(background);
+	}*/
+	//texture.setRepeated(true);
+	//sf::Sprite background(texture);
+	//this->_Window.draw(background);
+
 	// background test end
 
 	this->print_rect(foodX, foodY, 3);
@@ -80,8 +79,8 @@ void	SFML::print_rect(int x, int y, int colour){
 	this->_Window.draw(rect);
 }
 
-SFML	*create(int height, int width) {
-	return new SFML(height, width);
+SFML	*create(int width, int height) {
+	return new SFML(width, height);
 }
 
 void	destroy(LibraryManager *lib) {

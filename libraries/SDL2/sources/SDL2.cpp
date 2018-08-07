@@ -2,7 +2,7 @@
 #include "../../../includes/Direction.hpp"
 #include <iostream>
 
-SDL::SDL(int height, int width) : _blockHeight(10), _blockWidth(10), _WindowHeight(height), _WindowWidth(width) {
+SDL::SDL(int width, int height) : _blockHeight(10), _blockWidth(10), _WindowHeight(height), _WindowWidth(width) {
 	std::cout << "SDL Constructor called" << std::endl;
 	this->init();
 }
@@ -43,33 +43,31 @@ int			SDL::keyHook()   {
 			exit(0);
 		}
 		switch (_event.type) {
-		   case SDL_KEYDOWN:
-			   switch (_event.key.keysym.sym) {
-				   case SDLK_UP: return UP; std::cout << "up key" << std::endl;
-				   case SDLK_DOWN: return DOWN; std::cout << "up down" << std::endl;
-				   case SDLK_LEFT: return LEFT; std::cout << "up left" << std::endl;
-				   case SDLK_RIGHT: return RIGHT; std::cout << "up right" << std::endl;
-				   case SDLK_1: std::cout << "Switch SDL" << std::endl; return SWITCH_SDL;
-				   case SDLK_2: std::cout << "Switch SFML" << std::endl; return SWITCH_SFML;
-				//    case SDLK_ESCAPE: std::cout << "QUIT" << std::endl; return QUIT;
-			   }
+			case SDL_KEYDOWN:
+				switch (_event.key.keysym.sym) {
+					case SDLK_UP: return UP; std::cout << "up key" << std::endl;
+					case SDLK_DOWN: return DOWN; std::cout << "up down" << std::endl;
+					case SDLK_LEFT: return LEFT; std::cout << "up left" << std::endl;
+					case SDLK_RIGHT: return RIGHT; std::cout << "up right" << std::endl;
+					case SDLK_1: std::cout << "Switch SDL" << std::endl; return SWITCH_SDL;
+					case SDLK_2: std::cout << "Switch SFML" << std::endl; return SWITCH_SFML;
+					case SDLK_3: std::cout << "Switch NCURSES" << std::endl; return SWITCH_SFML;
+				//	   case SDLK_ESCAPE: std::cout << "QUIT" << std::endl; return QUIT;
+				}
 		}
 	}
 	return (OTHER);
 }
 
-void		SDL::print(std::vector<segment>	body, int foodX, int foodY) {
-	std::cout << "Printing...." << std::endl; // debug
-	std::cout << "Head X: " << body[0].x << std::endl; // debug
-	std::cout << "Head Y: " << body[0].y << std::endl; // debug
 
+void    SDL::print(std::vector<segment>	body, int foodX, int foodY) {
 	this->_backgroundcolor = SDL_MapRGB(this->_screenSurface->format, 0, 0, 0);
 
 	SDL_FillRect(this->_screenSurface, NULL, this->_backgroundcolor);
 
 	// code for drawing rects
 	this->print_rect(foodX, foodY, 3);
-	for (int i = 0; i < body.size(); i++){ // TESTNG
+	for (int i = 0; i < body.size(); i++){
 		this->print_rect(body[i].x, body[i].y, body[i].head);
 	}
 
@@ -95,8 +93,9 @@ void		SDL::print_rect(int x, int y, int colour){
 	SDL_FillRect(this->_screenSurface, &rect, this->_boxcolor);
 }
 
-SDL			*create(int height, int width) {
-	return new SDL(height, width);
+
+SDL         *create(int width, int height) {
+	return new SDL(width, height);
 }
 
 void		destroy(LibraryManager *lib) {
