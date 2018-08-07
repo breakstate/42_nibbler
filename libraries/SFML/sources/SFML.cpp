@@ -5,6 +5,7 @@ SFML::SFML( int width, int height ) : _WindowHeight(height), _WindowWidth(width)
 }
 
 SFML::~SFML() {
+	this->_Window.close();
 }
 
 void	SFML::init() {
@@ -44,7 +45,7 @@ int		SFML::keyHook() {
 void	SFML::print(std::vector<segment>	body, int foodX, int foodY) {
 	this->_Window.clear(sf::Color::White);
 	// background test
-	
+
 	/*sf::Texture texture;
 	if (!texture.loadFromFile("doge.jpg", sf::IntRect(0, 0, 640, 640)))
 	{

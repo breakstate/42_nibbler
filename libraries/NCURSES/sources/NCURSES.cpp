@@ -17,7 +17,7 @@ NCURSES::~NCURSES(){
 }
 
 
-NCURSES::NCURSES( int width, int height ) : _WindowHeight(height), _WindowWidth(width){
+NCURSES::NCURSES( int width, int height ) : _WindowHeight(height/11), _WindowWidth(width/11){
 	initscr();
 	cbreak(); // line buffering disabled
 	keypad(stdscr, TRUE);
@@ -31,7 +31,7 @@ NCURSES::NCURSES( int width, int height ) : _WindowHeight(height), _WindowWidth(
 	init_pair(BODY, COLOR_GREEN, COLOR_BLACK);
 	init_pair(FOOD, COLOR_RED, COLOR_BLACK);
 
-	this->_Window = newwin(height, width * 2, 0, 0);
+	this->_Window = newwin(this->_WindowHeight, this->_WindowWidth * 2, 0, 0);
 	wrefresh(this->_Window);
 }
 
