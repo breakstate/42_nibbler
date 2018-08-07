@@ -24,17 +24,17 @@ COMPILED_PATHS :=	$(addprefix $(OBJ_DIR),$(COMPILED_PATHS))
 all: $(NAME)
 
 $(NAME): $(COMPILED_PATHS)
-	$(CC) -shared -fPIC -o $(NAME) $(HEADERS) $(MACSDL) $(COMPILED_PATHS)
+	@$(CC) -shared -fPIC -o $(NAME) $(HEADERS) $(MACSDL) $(COMPILED_PATHS)
 
 $(COMPILED_PATHS): $(OBJ_DIR)%.o: $(SRC_DIR)%.cpp
 	@/bin/mkdir -p $(OBJ_DIR)
-	$(CC) -c $(HEADERS) $< -o $@
+	@$(CC) -c $(HEADERS) $< -o $@
 
 clean:
-	rm -f $(COMPILED_PATHS)
-	/usr/bin/find . -name "$(OBJ_DIR_NAME)" -maxdepth 1 -type d -empty -delete
+	@rm -f $(COMPILED_PATHS)
+	@/usr/bin/find . -name "$(OBJ_DIR_NAME)" -maxdepth 1 -type d -empty -delete
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
 re: fclean all
