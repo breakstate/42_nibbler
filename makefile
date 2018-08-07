@@ -49,3 +49,6 @@ fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
+	$(MAKE) re -C libraries/SDL2/
+	$(MAKE) re -C libraries/SFML/
+	$(MAKE) re -C libraries/NCURSES/

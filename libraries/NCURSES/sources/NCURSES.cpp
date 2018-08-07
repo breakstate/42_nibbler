@@ -1,28 +1,37 @@
 #include "../includes/NCURSES.hpp"
 
+#define HEAD 1
+#define BODY 2
+#define FOOD 3
+
 NCURSES::NCURSES(){
 
 }
 
 NCURSES::~NCURSES(){
 	std::cout << "deconstructing" << std::endl;
-	//wrefresh(this->_Window);
-	//delwin(this->_Window);
+	wrefresh(this->_Window);
+	delwin(this->_Window);
 	refresh();
 	endwin();
 }
 
 
-NCURSES::NCURSES( int height, int width ) : _WindowHeight(height), _WindowWidth(width){
-	std::cout << "NCURSES constructor called";
+NCURSES::NCURSES( int width, int height ) : _WindowHeight(height), _WindowWidth(width){
 	initscr();
-	//cbreak(); // line buffering disabled
+	cbreak(); // line buffering disabled
 	keypad(stdscr, TRUE);
 	noecho();
 	nodelay(stdscr, TRUE);
 	curs_set(FALSE);
 	raw();
-	this->_Window = newwin(height, width, 0, 0);
+
+	start_color();
+	init_pair(HEAD, COLOR_BLUE, COLOR_BLACK);
+	init_pair(BODY, COLOR_GREEN, COLOR_BLACK);
+	init_pair(FOOD, COLOR_RED, COLOR_BLACK);
+
+	this->_Window = newwin(height, width * 2, 0, 0);
 	wrefresh(this->_Window);
 }
 
@@ -31,40 +40,62 @@ int			NCURSES::keyHook(){
 	ch = getch();
 			switch (ch) {
 			case 'q':
-				std::cout << "exiting" << std::endl;
 				refresh();
 				endwin();
 				exit(1);
 			case KEY_LEFT:
-				mvprintw(5, 5, "left");
-				std::cout << "left" << std::endl;
 				return (LEFT);
 			case KEY_UP:
-				std::cout << "up" << std::endl;
 				return (UP);
 			case KEY_RIGHT:
-				std::cout << "right" << std::endl;
 				return (RIGHT);
 			case KEY_DOWN:
-				std::cout << "down" << std::endl;
 				return (DOWN); 
+			case '1':
+				return SWITCH_SDL;
+			case '2':
+				return SWITCH_SFML;
+			case '3':
+				return SWITCH_NCURSES;
 		}
 	return (OTHER);
 }
 
 void		NCURSES::print(std::vector<segment>	body, int foodX, int foodY){
-	this->print_rect(foodX, foodY, 3);
-	for (int i = 0; i < body.size(); i++){ // TESTNG
+	werase(this->_Window);
+	box(this->_Window, 0, 0);
+	this->print_rect(foodX, foodY, 2);
+	for (int i = 0; i < body.size(); i++){
 		this->print_rect(body[i].x, body[i].y, body[i].head);
 	}
+	wrefresh(this->_Window);
 }
 
 void		NCURSES::print_rect(int x, int y, int colour){
-	mvaddch(x, y, 'o');
+	std::string strx = std::to_string(x);
+	std::string stry = std::to_string(y);
+	std::string strco = strx + ";" + stry;
+	switch (colour){
+	case(0):
+		wattron(this->_Window, COLOR_PAIR(BODY));
+		mvwaddch(this->_Window, y, x*2, 'O');
+		wattroff(this->_Window, COLOR_PAIR(BODY));
+		break;
+	case(1):
+		wattron(this->_Window, COLOR_PAIR(HEAD));
+		mvwaddch(this->_Window, y, x*2, 'X');
+		wattroff(this->_Window, COLOR_PAIR(HEAD));
+		break;
+	case(2):
+		wattron(this->_Window, COLOR_PAIR(FOOD));
+		mvwaddch(this->_Window, y, x*2, '0');
+		wattroff(this->_Window, COLOR_PAIR(FOOD));
+		break;
+	};
 }
 
-NCURSES		*create(int height, int width) {
-	return new NCURSES(height, width);
+NCURSES		*create(int width, int height) {
+	return new NCURSES(width, height);
 }
 
 void		destroy(LibraryManager *lib) {
