@@ -48,7 +48,7 @@ int			SDL::keyHook()   {
 					case SDLK_1: return SWITCH_SDL;
 					case SDLK_2: return SWITCH_SFML;
 					case SDLK_3: return SWITCH_NCURSES;
-				//	   case SDLK_ESCAPE: std::cout << "QUIT" << std::endl; return QUIT;
+					case SDLK_q: return QUIT;
 				}
 		}
 	}

@@ -41,7 +41,9 @@ void	Game::gameloop( void ){
 	while (!(quit)){
 		direction = _getKey();
 		if (direction == PAUSE) {
-				playing++;
+			playing++;
+		} else if (direction == QUIT) {
+			quit++;
 		} else {
 			activeDirection = direction;
 		}
@@ -53,7 +55,6 @@ void	Game::gameloop( void ){
 				}
 			}else
 				tick++;
-			std::cout << direction << std::endl;
 			this->_OM->setSnakeDir( activeDirection );
 			this->_LM->print(this->_OM->getSnakeBody(), this->_OM->getFoodX(), this->_OM->getFoodY());
 			this->_OM->moveSnake();
@@ -102,6 +103,9 @@ eDir	Game::_getKey(){
 		break;
 	case(7):
 		return (PAUSE);
+		break;
+	case(8):
+		return (QUIT);
 		break;
 	};
 	return (OTHER);

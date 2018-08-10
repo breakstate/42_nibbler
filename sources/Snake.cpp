@@ -44,6 +44,8 @@ void		Snake::move( void ){
 		break;
 	case PAUSE:
 		break;
+	case QUIT:
+		break;
 	};
 	for (int i = 0; i < this->_body.size(); i++){
 		if (!(this->_body[i].head)){

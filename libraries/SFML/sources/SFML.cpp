@@ -43,10 +43,8 @@ int		SFML::keyHook() {
 			return SWITCH_SFML;
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num3))
 			return SWITCH_NCURSES;
-		// else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
-		// {
-		// 	return QUIT;
-		// }
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
+			return QUIT;
 	}
 	return (OTHER);
 }
