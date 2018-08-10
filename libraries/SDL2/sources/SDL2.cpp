@@ -30,7 +30,7 @@ void		SDL::init() {
 	
 }
 
-int			SDL::keyHook()   {
+int			SDL::keyHook()	{
 
 	while (SDL_PollEvent(&_event))
 	{
