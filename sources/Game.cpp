@@ -34,7 +34,7 @@ void	Game::gameloop( void ){
 	this->_OM->generateFood();
 	int	tick = 0;
 	unsigned int microseconds = 100000;
-	unsigned int speedModifier = 10000;
+	unsigned int speedModifier = 8000;
 	int colResult;
 	int quit = 0;
 	int playing = 0;
@@ -60,9 +60,9 @@ void	Game::gameloop( void ){
 					exit(0);
 				}
 				else if (colResult == 2) {
-					microseconds -= speedModifier;
+					if (microseconds > 10000)
+						microseconds -= speedModifier;
 					//speedModifier *= 2;
-					std::cout << microseconds << std::endl;
 				}
 			}else
 				tick++;
