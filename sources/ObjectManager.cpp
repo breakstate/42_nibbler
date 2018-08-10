@@ -52,7 +52,6 @@ void	ObjectManager::generateFood( void ){
 
 void	ObjectManager::moveSnake( void ){
 	this->_snake->move();
-	this->_snake->debugPrint();
 }
 
 int		ObjectManager::getFoodX( void ){
