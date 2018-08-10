@@ -44,10 +44,12 @@ void	Game::gameloop( void ){
 			playing++;
 		} else if (direction == QUIT) {
 			quit++;
+			playing++;
+			deleteLib();
 		} else {
 			activeDirection = direction;
 		}
-		if (playing%2 == 0) {
+		if (playing % 2 == 0) {
 			if (tick > 1){
 				if (this->_OM->collisionManager()) {
 					deleteLib();
