@@ -34,6 +34,8 @@ void	Game::gameloop( void ){
 	this->_OM->generateFood();
 	int	tick = 0;
 	unsigned int microseconds = 100000;
+	unsigned int speedModifier = 10000;
+	int colResult;
 	int quit = 0;
 	int playing = 0;
 	eDir direction;
@@ -50,10 +52,17 @@ void	Game::gameloop( void ){
 			activeDirection = direction;
 		}
 		if (playing % 2 == 0) {
-			if (tick > 1){
-				if (this->_OM->collisionManager()) {
+			if (tick > 4){
+				colResult = this->_OM->collisionManager();
+				if (colResult == 1) {
 					deleteLib();
+					this->printScore();
 					exit(0);
+				}
+				else if (colResult == 2) {
+					microseconds -= speedModifier;
+					//speedModifier *= 2;
+					std::cout << microseconds << std::endl;
 				}
 			}else
 				tick++;
@@ -90,6 +99,7 @@ eDir	Game::_getKey(){
 		break;
 	case(4):
 		this->_libID = 0 ;
+		usleep(500000);
 		deleteLib();
 		this->setLib();
 		break;
@@ -174,4 +184,8 @@ const char *Game::MaximumScreenSizeException::what() const throw() {
 
 const char *Game::MinimumscreenSizeException::what() const throw() {
 	return ("Error: Screen size too small\nAllowed Min Screen size: 300");
+}
+
+void	Game::printScore( void ){
+	std::cout << "SCORE: " << this->_OM->playerScore << "!" << std::endl;
 }

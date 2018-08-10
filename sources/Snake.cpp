@@ -17,6 +17,8 @@ Snake::Snake( int startX, int startY, eDir startDir ){
 	this->_body.insert(this->_body.begin(), *temp);
 	delete temp;
 	this->grow();
+	this->grow();
+	this->grow();
 }
 
 void		Snake::move( void ){

@@ -27,6 +27,8 @@ eDir	getSnakeDir( void );
 std::vector<segment>	getSnakeBody( void );
 void	draw( void );
 
+int		playerScore;
+
 protected:
 
 private:

@@ -20,7 +20,7 @@ eDir	testAI( int safe );
 void	setLib( LibraryManager *newLib );
 void	setLib();
 void	deleteLib( void );
-
+void	printScore( void );
 
 //Exceptions:
 class MaximumScreenSizeException: public std::exception {

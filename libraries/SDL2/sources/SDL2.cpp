@@ -57,7 +57,7 @@ int			SDL::keyHook()	{
 
 
 void    SDL::print(std::vector<segment>	body, int foodX, int foodY) {
-	this->_backgroundcolor = SDL_MapRGB(this->_screenSurface->format, 0, 0, 0);
+	this->_backgroundcolor = SDL_MapRGB(this->_screenSurface->format,61,49,117);
 
 	SDL_FillRect(this->_screenSurface, NULL, this->_backgroundcolor);
 
@@ -75,11 +75,11 @@ void		SDL::print_rect(int x, int y, int colour){
 	int offset = 1;
 
 	if (colour == 0)
-		this->_boxcolor = SDL_MapRGB(this->_screenSurface->format, 0, 0, 255);
+		this->_boxcolor = SDL_MapRGB(this->_screenSurface->format,35, 24, 88);
 	else if (colour == 1)
-		this->_boxcolor = SDL_MapRGB(this->_screenSurface->format, 0, 255, 0);
+		this->_boxcolor = SDL_MapRGB(this->_screenSurface->format,17, 7, 59);
 	else 
-		this->_boxcolor = SDL_MapRGB(this->_screenSurface->format, 255, 0, 0);
+		this->_boxcolor = SDL_MapRGB(this->_screenSurface->format,134, 125, 176);
 
 	rect.w = this->_blockWidth;
 	rect.h = this->_blockHeight;

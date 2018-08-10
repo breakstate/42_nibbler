@@ -49,7 +49,7 @@ int		SFML::keyHook() {
 	return (OTHER);
 }
 void	SFML::print(std::vector<segment>	body, int foodX, int foodY) {
-	this->_Window.clear(sf::Color::White);
+	this->_Window.clear(sf::Color(96, 151, 50));//::White);
 	// background test
 
 	/*sf::Texture texture;
@@ -74,13 +74,13 @@ void	SFML::print(std::vector<segment>	body, int foodX, int foodY) {
 
 void	SFML::print_rect(int x, int y, int colour){
 	//sf::RectangleShape rect(sf::Vector2f(10, 10));
-	sf::CircleShape rect(5, 4);
+	sf::CircleShape rect(5, 16);
 	if (colour == 0)
-		rect.setFillColor(sf::Color::Blue);
+		rect.setFillColor(sf::Color(62, 114, 19));//::Blue);
 	else if (colour == 1)
-		rect.setFillColor(sf::Color::Green);
+		rect.setFillColor(sf::Color(34, 76, 0));//::Green);
 	else
-		rect.setFillColor(sf::Color::Red);
+		rect.setFillColor(sf::Color(185, 227, 151));//::Red);
 
 	rect.setPosition(x * (10 + 1), y * (10 + 1));
 	this->_Window.draw(rect);

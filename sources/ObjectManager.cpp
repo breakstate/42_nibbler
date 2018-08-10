@@ -3,6 +3,7 @@
 ObjectManager::ObjectManager( int width, int height ){
 	this->_height = height;
 	this->_width = width;
+	this->playerScore = 0;
 	std::cout << "created snake" << std::endl;
 	this->_snake = new Snake( 3, 3, RIGHT );
 }
@@ -20,14 +21,19 @@ int		ObjectManager::collisionManager( void ){
 	int	y = this->_snake->getHeadY();
 	int	index;
 	if ((x < 0) || (x >= (this->_width / 11))){ // moving scaling to lib
+		std::cout << "x" << std::endl;
 		return (1);
 	}
 	if ((y < 0) || (y >= (this->_height / 11))){ // moving scaling to lib
+		std::cout << "y" << std::endl;
 		return (1);
 	}
 	if (this->_snake->checkHeadCollision( _foodX, _foodY )){
+		std::cout << "food" << std::endl;
 		this->_snake->grow();
 		this->generateFood();
+		this->playerScore += 50;
+		return (2);
 		// incremement points
 	}
 	if ((index = this->_snake->checkBodyCollision( x, y ))){
