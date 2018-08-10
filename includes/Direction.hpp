@@ -10,7 +10,8 @@ enum eDir {
 	SWITCH_SFML,
 	SWITCH_NCURSES,
 	PAUSE,
-	OTHER
+	QUIT,
+	OTHER,
 };
 
 #endif

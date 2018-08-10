@@ -39,10 +39,6 @@ int			NCURSES::keyHook(){
 	int ch = 0;
 	ch = getch();
 			switch (ch) {
-			case 'q':
-				refresh();
-				endwin();
-				exit(1);
 			case ' ':
 				return (PAUSE);
 			case KEY_LEFT:
@@ -53,6 +49,8 @@ int			NCURSES::keyHook(){
 				return (RIGHT);
 			case KEY_DOWN:
 				return (DOWN); 
+			case 'q':
+				return (QUIT);
 			case '1':
 				return SWITCH_SDL;
 			case '2':
