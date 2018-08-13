@@ -6,7 +6,7 @@
 #    By: qmanamel <qmanamel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/15 11:41:20 by qmanamel          #+#    #+#              #
-#    Updated: 2018/07/25 13:53:20 by qmanamel         ###   ########.fr        #
+#    Updated: 2018/08/10 14:48:24 by qmanamel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = nibbler
 
 CC = clang++
 
-FLAGS =	
+FLAGS =	-Wall -Werror -Wextra
  
 LDFLAGS = -rpath libraries/SFML/SFML/lib
 
@@ -29,8 +29,6 @@ FILENAMES = main Game Snake ObjectManager
 
 COMPILED_PATHS :=	$(addsuffix .o,$(FILENAMES))
 COMPILED_PATHS :=	$(addprefix $(OBJ_DIR),$(COMPILED_PATHS))
-
-SDL_MAKE = make -C libraries/SDL2
 
 RED='\033[0;31m'
 GREEN='\033[0;32m'

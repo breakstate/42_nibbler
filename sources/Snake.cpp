@@ -1,12 +1,8 @@
 #include "../includes/Snake.hpp"
 
-#include <ncurses.h> // debug
+Snake::Snake( void ){}
 
-Snake::Snake( void ){
-}
-
-Snake::~Snake( void ){
-}
+Snake::~Snake( void ){}
 
 Snake::Snake( int startX, int startY, eDir startDir ){
 	segment *temp = new segment;
@@ -22,7 +18,6 @@ Snake::Snake( int startX, int startY, eDir startDir ){
 }
 
 void		Snake::move( void ){
-	//this->debugPrint(); // debug
 	switch(this->_direction){
 	case LEFT:
 		this->_body[0].x -=1;
@@ -49,7 +44,7 @@ void		Snake::move( void ){
 	case QUIT:
 		break;
 	};
-	for (int i = 0; i < this->_body.size(); i++){
+	for (std::vector<int>::size_type i = 0; i < this->_body.size(); i++){
 		if (!(this->_body[i].head)){
 			this->_body[i].x = this->_body[i].xAhead;
 			this->_body[i].y = this->_body[i].yAhead;
@@ -86,8 +81,7 @@ int			Snake::checkHeadCollision( int x, int y ){
 }
 
 int			Snake::checkBodyCollision( int x, int y ){
-	// return index. Thanks George
-	for (int i = 1; i < this->_body.size(); i++){
+	for (std::vector<int>::size_type i = 1; i < this->_body.size(); i++){
 		if (this->_body[i].x == x && this->_body[i].y == y){
 			return (i);
 		}
@@ -112,15 +106,4 @@ void		Snake::chop( int index ){
 
 std::vector<segment>	Snake::getBody( void ){
 	return (this->_body);
-}
-
-
-void		Snake::debugPrint( void ){
-	//std::cout << "debug print:" << std::endl;
-	for (int i = 0; i < this->_body.size(); i++){
-		//std::cout << "x: " + std::to_string(this->_body[i].x) << "	y: " + std::to_string(this->_body[i].y) << std::endl; // debug
-		//std::string coords = std::to_string(this->_body[i].x) + ";" + std::to_string(this->_body[i].y); //debug
-		//mvprintw(5, 2, coords.c_str()); // ncurses debug
-	}
-	//std::cout << std::endl; // debug
 }

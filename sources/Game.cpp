@@ -123,37 +123,37 @@ eDir	Game::_getKey(){
 	return (OTHER);
 }
 
-eDir	Game::testAI( int safe ){
-	int dir = rand() % 4;
-	//std::cout << dir << std::endl; // debug AI direction
-	switch (dir){
-		case(0):
-		if (this->_OM->getSnakeDir() != RIGHT && this->_OM->getSnakeDir() != LEFT){
-			return (LEFT);
-		}
-		break;
-		case(1):
-		if (this->_OM->getSnakeDir() != DOWN && this->_OM->getSnakeDir() != UP){
-			return (UP);
-		}
-		break;
-		case(2):
-		if (this->_OM->getSnakeDir() != LEFT && this->_OM->getSnakeDir() != RIGHT){
-			std::cout << "RIGHT" << std::endl; // debug  AI direction
-			return (RIGHT);
-		}
-		std::cout << "already right or left" << std::endl; // debug AI direction
-		break;
-		case(3):
-		if (this->_OM->getSnakeDir() != UP && this->_OM->getSnakeDir() != DOWN){
-			std::cout << "DOWN" << std::endl; // debug AI direction
-			return (DOWN);
-		}
-		std::cout << "already down or up" << std::endl; // debug AI direction
-		break;
-	};
-	return (OTHER);
-}
+// eDir	Game::testAI( int safe ){
+// 	int dir = rand() % 4;
+// 	//std::cout << dir << std::endl; // debug AI direction
+// 	switch (dir){
+// 		case(0):
+// 		if (this->_OM->getSnakeDir() != RIGHT && this->_OM->getSnakeDir() != LEFT){
+// 			return (LEFT);
+// 		}
+// 		break;
+// 		case(1):
+// 		if (this->_OM->getSnakeDir() != DOWN && this->_OM->getSnakeDir() != UP){
+// 			return (UP);
+// 		}
+// 		break;
+// 		case(2):
+// 		if (this->_OM->getSnakeDir() != LEFT && this->_OM->getSnakeDir() != RIGHT){
+// 			std::cout << "RIGHT" << std::endl; // debug  AI direction
+// 			return (RIGHT);
+// 		}
+// 		std::cout << "already right or left" << std::endl; // debug AI direction
+// 		break;
+// 		case(3):
+// 		if (this->_OM->getSnakeDir() != UP && this->_OM->getSnakeDir() != DOWN){
+// 			std::cout << "DOWN" << std::endl; // debug AI direction
+// 			return (DOWN);
+// 		}
+// 		std::cout << "already down or up" << std::endl; // debug AI direction
+// 		break;
+// 	};
+// 	return (OTHER);
+// }
 
 void	Game::setLib() {
 	this->_handler = dlopen(this->_libs[this->_libID], RTLD_NOW);
