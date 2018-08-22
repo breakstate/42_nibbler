@@ -15,9 +15,9 @@ Game::Game( int width, int height ){
 	this->_OM = new ObjectManager(width, height);
 	this->_width = width;
 	this->_height = height;
-	_libs[0] = "libraries/NCURSES/NCURSES.so";
+	_libs[0] = "libraries/SDL2/SDL2.so";
 	_libs[1] = "libraries/SFML/SFML.so";
-	_libs[2] = "libraries/SDL2/SDL2.so";
+	_libs[2] = "libraries/NCURSES/NCURSES.so";
 	this->setLib();
 }
 
@@ -99,7 +99,6 @@ eDir	Game::_getKey(){
 		break;
 	case(4):
 		this->_libID = 0 ;
-		usleep(500000);
 		deleteLib();
 		this->setLib();
 		break;
@@ -109,6 +108,9 @@ eDir	Game::_getKey(){
 		this->setLib();
 		break;
 	case(6):
+		this->_libID = 0 ;
+		deleteLib();
+		this->setLib();
 		this->_libID = 2 ;
 		deleteLib();
 		this->setLib();

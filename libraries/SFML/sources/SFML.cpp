@@ -8,12 +8,8 @@ SFML::SFML( int width, int height ) : _WindowHeight(height), _WindowWidth(width)
 }
 
 SFML::~SFML() {
-	// std::ofstream myfile;
-	// myfile.open ("example.txt");
-	// myfile << "Writing this to a file.\n";
-	// myfile.close();
-	std::cout << "SFML Deconstruct" << std::endl;
 	this->_Window.close();
+	std::cout << "SFML Deconstruct" << std::endl;
 }
 
 void	SFML::init() {
@@ -49,23 +45,11 @@ int		SFML::keyHook() {
 	return (OTHER);
 }
 void	SFML::print(std::vector<segment>	body, int foodX, int foodY) {
-	this->_Window.clear(sf::Color(96, 151, 50));//::White);
-	// background test
-
-	/*sf::Texture texture;
-	if (!texture.loadFromFile("doge.jpg", sf::IntRect(0, 0, 640, 640)))
-	{
-		std::cout << "NOPE" << std::endl;
-	}*/
-	//texture.setRepeated(true);
-	//sf::Sprite background(texture);
-	//this->_Window.draw(background);
-
-	// background test end
+	this->_Window.clear(sf::Color(96, 151, 50));
 
 	this->print_rect(foodX, foodY, 3);
 
-    for (int i = 0; i < static_cast<int>(body.size()); i++){ // TESTNG
+    for (int i = 0; i < static_cast<int>(body.size()); i++){
         this->print_rect(body[i].x, body[i].y, body[i].head);
     }
 
@@ -73,7 +57,6 @@ void	SFML::print(std::vector<segment>	body, int foodX, int foodY) {
 }
 
 void	SFML::print_rect(int x, int y, int colour){
-	//sf::RectangleShape rect(sf::Vector2f(10, 10));
 	sf::CircleShape rect(5, 16);
 	if (colour == 0)
 		rect.setFillColor(sf::Color(62, 114, 19));//::Blue);
@@ -91,5 +74,5 @@ SFML	*create(int width, int height) {
 }
 
 void	destroy(LibraryManager *lib) {
-	delete (lib);
+	delete(lib);
 }
