@@ -62,7 +62,6 @@ void	Game::gameloop( void ){
 				else if (colResult == 2) {
 					if (microseconds > 10000)
 						microseconds -= speedModifier;
-					//speedModifier *= 2;
 				}
 			}else
 				tick++;

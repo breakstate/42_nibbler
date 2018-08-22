@@ -9,7 +9,6 @@ NCURSES::NCURSES(){
 }
 
 NCURSES::~NCURSES(){
-	std::cout << "deconstructing" << std::endl;
 	wrefresh(this->_Window);
 	delwin(this->_Window);
 	refresh();
