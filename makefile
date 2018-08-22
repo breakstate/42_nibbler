@@ -37,7 +37,7 @@ NC='\033[0m'
 
 all: $(NAME)
 
-$(NAME): $(COMPILED_PATHS)
+$(NAME): install $(COMPILED_PATHS)
 	@echo "$(GREEN)Making SDL2$(NC)"
 	@$(MAKE) -C libraries/SDL2/
 	@echo "$(GREEN)Making SFML$(NC)"
@@ -50,6 +50,11 @@ $(NAME): $(COMPILED_PATHS)
 $(COMPILED_PATHS): $(OBJ_DIR)%.o: $(SRC_DIR)%.cpp
 	@/bin/mkdir -p $(OBJ_DIR)
 	@$(CC) -c $(FLAGS) $(HEADERS) $< -o $@
+
+install:
+	brew install sdl2 
+	brew install sfml
+	sh Install.sh
 
 clean:
 	@rm -f $(COMPILED_PATHS)
