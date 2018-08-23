@@ -9,7 +9,7 @@ SDLLIBFLAG = $(shell sdl2-config --libs) #uncommented for mac
 
 MACSDL = $(SDLHEADERFLAG) $(SDLLIBFLAG)
 
-HEADERS = -I includes/
+HEADERS = -I includes/ -I$(HOME)/.brew/Cellar/sdl2/2.0.8/include/
 
 SRC_DIR = sources/
 

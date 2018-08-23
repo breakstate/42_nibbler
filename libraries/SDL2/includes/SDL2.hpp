@@ -1,6 +1,6 @@
 
 #include "../../LibraryManager.hpp"
-#include "../SDL2/SDL.h"
+#include <SDL2/SDL.h>
 #ifndef SDL_LIB
 #define SDL_LIB
 
