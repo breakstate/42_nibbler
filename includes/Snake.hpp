@@ -14,8 +14,8 @@ public:
 
 Snake( void );
 ~Snake( void );
-//Snake( const Snake & srcObj);
-//Snake & operator=( Snake const & srcObj );
+Snake( const Snake & srcObj);
+Snake & operator=( Snake const & srcObj );
 
 Snake( int startX, int startY, eDir startDir );
 

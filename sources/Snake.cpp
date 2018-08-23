@@ -17,6 +17,17 @@ Snake::Snake( int startX, int startY, eDir startDir ){
 	this->grow();
 }
 
+Snake::Snake( const Snake & srcObj) {
+	*this = srcObj;
+}
+
+Snake &Snake::operator=( Snake const & srcObj ) {
+	this->_body = srcObj._body;
+	this->_direction = srcObj._direction;
+
+	return (*this);
+}
+
 void		Snake::move( void ){
 	switch(this->_direction){
 	case LEFT:

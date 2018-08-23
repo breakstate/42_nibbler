@@ -4,9 +4,7 @@
 #define BODY 2
 #define FOOD 3
 
-NCURSES::NCURSES(){
-
-}
+NCURSES::NCURSES(){}
 
 NCURSES::~NCURSES(){
 	wrefresh(this->_Window);
@@ -15,6 +13,17 @@ NCURSES::~NCURSES(){
 	endwin();
 }
 
+NCURSES::NCURSES( const NCURSES & srcObj) {
+	*this = srcObj;
+}
+
+NCURSES &NCURSES::operator=( const NCURSES & srcObj) {
+	this->_Window = srcObj._Window;
+	this->_WindowHeight = srcObj._WindowHeight;
+	this->_WindowWidth = srcObj._WindowWidth;
+
+	return (*this);
+}
 
 NCURSES::NCURSES( int width, int height ) : _WindowHeight(height/11), _WindowWidth(width/11){
 	initscr();

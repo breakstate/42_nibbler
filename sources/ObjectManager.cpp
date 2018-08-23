@@ -8,9 +8,26 @@ ObjectManager::ObjectManager( int width, int height ){
 }
 
 ObjectManager::ObjectManager( void ){
+	this->_height = 640;
+	this->_width = 640;
+	this->playerScore = 0;
+	this->_snake = new Snake( 3, 3, RIGHT );
 }
 
-ObjectManager::~ObjectManager( void ){
+ObjectManager::~ObjectManager( void ){}
+
+ObjectManager::ObjectManager( const ObjectManager & srcObj) {
+	*this = srcObj;
+}
+
+ObjectManager & ObjectManager::operator=( ObjectManager const & srcObj ) {
+	this->_snake = srcObj._snake;
+	this->_foodX = srcObj._foodX;
+	this->_foodY = srcObj._foodY;
+	this->_height = srcObj._height;
+	this->_width = srcObj._width;
+
+	return (*this);
 }
 
 int		ObjectManager::collisionManager( void ){

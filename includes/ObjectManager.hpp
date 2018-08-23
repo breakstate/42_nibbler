@@ -11,11 +11,8 @@ public:
 ObjectManager( int width, int height );
 ObjectManager( void );
 ~ObjectManager( void );
-//ObjectManager( const ObjectManager & srcObj);
-//ObjectManager & operator=( ObjectManager const & srcObj );
-
-//drawManager
-//void	objectCleaner
+ObjectManager( const ObjectManager & srcObj);
+ObjectManager & operator=( ObjectManager const & srcObj );
 
 int		collisionManager( void );
 void	generateFood( void );

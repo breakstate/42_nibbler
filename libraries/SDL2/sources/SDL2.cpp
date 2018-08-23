@@ -14,6 +14,24 @@ SDL::~SDL() {
 	SDL_Quit();
 }
 
+SDL::SDL( const SDL & srcObj) {
+	*this = srcObj;
+}
+
+SDL &SDL::operator=( const SDL & srcObj) {
+	this->_Window = srcObj._Window;
+	this->_screenSurface = srcObj._screenSurface;
+	this->_event = srcObj._event;
+	this->_boxcolor = srcObj._boxcolor;
+	this->_backgroundcolor = srcObj._backgroundcolor;
+	this->_blockHeight = srcObj._blockHeight;
+	this->_blockWidth = srcObj._blockWidth;
+	this->_WindowHeight = srcObj._WindowHeight;
+	this->_WindowWidth = srcObj._WindowWidth;
+
+	return (*this);
+}
+
 void		SDL::setScreen(SDL_Window *screen) { this->_Window = screen; }
 
 SDL_Window  *SDL::getScreen() { return (this->_Window); }
@@ -31,7 +49,6 @@ void		SDL::init() {
 }
 
 int			SDL::keyHook()	{
-
 	while (SDL_PollEvent(&_event))
 	{
 		if (_event.type == SDL_QUIT) {

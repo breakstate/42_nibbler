@@ -7,18 +7,21 @@
 #define SFML_LIB
 
 class SFML: public LibraryManager {
-    public:
-        SFML(int height, int width);
-        virtual ~SFML();
+	public:
+		SFML(int height, int width);
+		SFML();
+		SFML( SFML const & srcObj);
+		SFML & operator=( SFML const & srcObj);
+		virtual ~SFML();
 
-        void        init();
-        int         keyHook();
-        void        print(std::vector<segment>	body, int foodX, int foodY);
-        void        print_rect(int x, int y, int colour);
-    private:
-        sf::RenderWindow    _Window;
-        int                 _WindowHeight;
-        int                 _WindowWidth;
+		void        init();
+		int         keyHook();
+		void        print(std::vector<segment>	body, int foodX, int foodY);
+		void        print_rect(int x, int y, int colour);
+	private:
+		sf::RenderWindow    _Window;
+		int                 _WindowHeight;
+		int                 _WindowWidth;
 };
 
 #ifdef __cplusplus

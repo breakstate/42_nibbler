@@ -5,29 +5,31 @@
 #define SDL_LIB
 
 class SDL : public LibraryManager {
-    public:
-        SDL(int width, int height);
-        virtual ~SDL();
+	public:
+		SDL(int width, int height);
+		SDL( SDL const  & srcObj);
+		SDL &operator=( SDL const  & srcObj);
+		virtual ~SDL();
 
-        void        setScreen(SDL_Window *screen);
-        SDL_Window  *getScreen();
+		void        setScreen(SDL_Window *screen);
+		SDL_Window  *getScreen();
 
-        void        init();
-        int         keyHook();
-        void        print(std::vector<segment>	body, int foodX, int foodY);
-        void        print_rect(int x, int y, int head);
+		void        init();
+		int         keyHook();
+		void        print(std::vector<segment>	body, int foodX, int foodY);
+		void        print_rect(int x, int y, int head);
 
-    private:
-        SDL( void );
-        SDL_Window*     _Window;
-        SDL_Surface     *_screenSurface;
-        SDL_Event       _event;
-        unsigned        _boxcolor;
-        unsigned        _backgroundcolor;
-        int             _blockHeight;
-        int             _blockWidth;
-        int             _WindowHeight;
-        int             _WindowWidth;
+	private:
+		SDL( void );
+		SDL_Window*     _Window;
+		SDL_Surface     *_screenSurface;
+		SDL_Event       _event;
+		unsigned        _boxcolor;
+		unsigned        _backgroundcolor;
+		int             _blockHeight;
+		int             _blockWidth;
+		int             _WindowHeight;
+		int             _WindowWidth;
 };
 
 #ifdef __cplusplus

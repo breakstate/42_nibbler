@@ -12,8 +12,8 @@ public:
 Game( void );
 Game( int width, int height );
 ~Game( void );
-//Game( const Game & srcObj);
-//Game & operator=( Game const & srcObj );
+Game( const Game &srcObj);
+Game &operator=( Game const & srcObj );
 
 void	gameloop( void );
 eDir	testAI( int safe );

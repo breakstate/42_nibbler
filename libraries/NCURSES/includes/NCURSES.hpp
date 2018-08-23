@@ -13,6 +13,8 @@ public:
 		NCURSES(void);
 		NCURSES(int height, int width);
 		~NCURSES();
+		NCURSES( const NCURSES & srcObj);
+		NCURSES &operator=( const NCURSES & srcObj);
 
 		void        init();
 		int         keyHook();

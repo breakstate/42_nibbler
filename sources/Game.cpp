@@ -1,7 +1,7 @@
 #include "../includes/Game.hpp"
 #include "../libraries/SDL2/includes/SDL2.hpp"
-#include <unistd.h> // for usleep
-#include <time.h> //
+#include <unistd.h>
+#include <time.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include <dlfcn.h>
@@ -29,8 +29,24 @@ Game::~Game( void ){
 	delete this->_OM;
 }
 
+Game::Game( const Game &srcObj) {
+	*this = srcObj;
+}
+
+Game &Game::operator=( Game const & srcObj ) {
+	this->_OM = srcObj._OM;
+	this->_handler = srcObj._handler;
+	this->createLib = srcObj.createLib;
+	this->destroyLib = srcObj.destroyLib;
+	this->_LM = srcObj._LM;
+	this->_width = srcObj._width;
+	this->_height = srcObj._height;
+
+	return (*this);
+}
+
 void	Game::gameloop( void ){
-	srand(time(NULL)); // for random dir
+	srand(time(NULL));
 	this->_OM->generateFood();
 	int	tick = 0;
 	unsigned int microseconds = 100000;
@@ -124,43 +140,11 @@ eDir	Game::_getKey(){
 	return (OTHER);
 }
 
-// eDir	Game::testAI( int safe ){
-// 	int dir = rand() % 4;
-// 	//std::cout << dir << std::endl; // debug AI direction
-// 	switch (dir){
-// 		case(0):
-// 		if (this->_OM->getSnakeDir() != RIGHT && this->_OM->getSnakeDir() != LEFT){
-// 			return (LEFT);
-// 		}
-// 		break;
-// 		case(1):
-// 		if (this->_OM->getSnakeDir() != DOWN && this->_OM->getSnakeDir() != UP){
-// 			return (UP);
-// 		}
-// 		break;
-// 		case(2):
-// 		if (this->_OM->getSnakeDir() != LEFT && this->_OM->getSnakeDir() != RIGHT){
-// 			std::cout << "RIGHT" << std::endl; // debug  AI direction
-// 			return (RIGHT);
-// 		}
-// 		std::cout << "already right or left" << std::endl; // debug AI direction
-// 		break;
-// 		case(3):
-// 		if (this->_OM->getSnakeDir() != UP && this->_OM->getSnakeDir() != DOWN){
-// 			std::cout << "DOWN" << std::endl; // debug AI direction
-// 			return (DOWN);
-// 		}
-// 		std::cout << "already down or up" << std::endl; // debug AI direction
-// 		break;
-// 	};
-// 	return (OTHER);
-// }
 
 void	Game::setLib() {
 	this->_handler = dlopen(this->_libs[this->_libID], RTLD_NOW);
-	if (!this->_handler) {
+	if (!this->_handler)
 		std::cout << dlerror() << std::endl;
-	}
 	createLib = (createLib_t*) dlsym(this->_handler, "create");
 	destroyLib = (destroyLib_t*) dlsym(this->_handler, "destroy");
 	if (dlerror()) {

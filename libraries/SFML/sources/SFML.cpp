@@ -7,6 +7,19 @@ SFML::SFML( int width, int height ) : _WindowHeight(height), _WindowWidth(width)
 	this->init();
 }
 
+SFML::SFML() {}
+
+SFML::SFML( SFML const & srcObj) {
+	*this = srcObj;
+}
+
+SFML & SFML::operator=( SFML const & srcObj) {
+	this->_WindowHeight = srcObj._WindowHeight;
+	this->_WindowWidth = srcObj._WindowWidth;
+
+	return (*this);
+}
+
 SFML::~SFML() {
 	this->_Window.close();
 }
