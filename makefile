@@ -6,7 +6,7 @@
 #    By: qmanamel <qmanamel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/15 11:41:20 by qmanamel          #+#    #+#              #
-#    Updated: 2018/08/23 10:11:24 by qmanamel         ###   ########.fr        #
+#    Updated: 2018/08/23 10:12:36 by qmanamel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ FLAGS =	-Wall -Werror -Wextra
  
 LDFLAGS = -rpath libraries/SFML/SFML/lib
 
-HEADERS = -I includes/ -I$(HOME)/.brew/Cellar/sdl2/2.0.8/include/
+HEADERS = -I includes/ -I$(HOME)/.brew/include
 
 SRC_DIR = sources/
 
