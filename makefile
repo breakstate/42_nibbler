@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
+#    makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: qmanamel <qmanamel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/15 11:41:20 by qmanamel          #+#    #+#              #
-#    Updated: 2018/08/10 14:48:24 by qmanamel         ###   ########.fr        #
+#    Updated: 2018/08/23 09:55:07 by qmanamel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ NC='\033[0m'
 
 all: $(NAME)
 
-$(NAME): install $(COMPILED_PATHS)
+$(NAME): $(COMPILED_PATHS)
 	@echo "$(GREEN)Making SDL2$(NC)"
 	@$(MAKE) -C libraries/SDL2/
 	@echo "$(GREEN)Making SFML$(NC)"
@@ -52,9 +52,7 @@ $(COMPILED_PATHS): $(OBJ_DIR)%.o: $(SRC_DIR)%.cpp
 	@$(CC) -c $(FLAGS) $(HEADERS) $< -o $@
 
 install:
-	brew install sdl2 
-	brew install sfml
-	sh Install.sh
+	@sh Install.sh
 
 clean:
 	@rm -f $(COMPILED_PATHS)
